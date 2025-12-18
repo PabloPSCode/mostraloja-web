@@ -1,7 +1,11 @@
+import AppleButton from "../libs/react-ultimate-components/src/components/buttons/AppleSignInButton";
+import CurrencyInput from "../libs/react-ultimate-components/src/components/inputs/CurrencyInput";
+
 const features = [
   {
     title: "Next.js 15",
-    description: "App Router, server components, and optimized routing ready to go.",
+    description:
+      "App Router, server components, and optimized routing ready to go.",
   },
   {
     title: "TypeScript",
@@ -9,11 +13,13 @@ const features = [
   },
   {
     title: "TailwindCSS",
-    description: "Utility-first styling with sensible defaults and extendable theme.",
+    description:
+      "Utility-first styling with sensible defaults and extendable theme.",
   },
   {
     title: "ESLint",
-    description: "React hooks rules are enabled to keep components predictable.",
+    description:
+      "React hooks rules are enabled to keep components predictable.",
   },
 ];
 
@@ -29,8 +35,9 @@ export default function Home() {
             Next.js 15 starter with TypeScript, TailwindCSS, and ESLint.
           </h1>
           <p className="text-lg text-slate-600 sm:max-w-3xl">
-            Everything is prewired so you can jump straight into building your product.
-            Start the dev server with <span className="font-mono text-sm">npm run dev</span>
+            Everything is prewired so you can jump straight into building your
+            product. Start the dev server with{" "}
+            <span className="font-mono text-sm">npm run dev</span>
             and keep moving.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -50,12 +57,16 @@ export default function Home() {
         </header>
 
         <section className="grid gap-4 sm:grid-cols-2">
+          <CurrencyInput label="Currency input usage" />
+          <AppleButton />
           {features.map((feature) => (
             <article
               key={feature.title}
               className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
-              <h2 className="text-lg font-semibold text-slate-900">{feature.title}</h2>
+              <h2 className="text-lg font-semibold text-slate-900">
+                {feature.title}
+              </h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-600 text-balance">
                 {feature.description}
               </p>
