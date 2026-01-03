@@ -13,17 +13,17 @@
 @import "react-responsive-modal/styles.css";
 
 :root {
-  --color-primary-50: #f0fdf4;
-  --color-primary-100: #dcfce7;
-  --color-primary-200: #bbf7d0;
-  --color-primary-300: #86efac;
-  --color-primary-400: #4ade80;
-  --color-primary-500: #009739;
-  --color-primary-600: #008131;
-  --color-primary-700: #006628;
-  --color-primary-800: #004d1f;
-  --color-primary-900: #003315;
-  --color-primary-950: #001a0a;
+  --color-primary-50: #fef3c7;
+  --color-primary-100: #fde68a;
+  --color-primary-200: #fcd34d;
+  --color-primary-300: #fbbf24;
+  --color-primary-400: #f59e0b;
+  --color-primary-500: #d97706;
+  --color-primary-600: #b45309;
+  --color-primary-700: #92400e;
+  --color-primary-800: #78350f;
+  --color-primary-900: #45141d;
+  --color-primary-950: #3b0e14;
 
   --color-secondary-50: #fffdea;
   --color-secondary-100: #fef9c3;
@@ -102,12 +102,12 @@
   --color-bg-card: #ffffff;
   --color-border-card: #ffffff;
 
-  --font-primary: "Work Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
-    "Segoe UI Emoji", sans-serif;
-  --font-secondary: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
-    "Segoe UI Emoji", sans-serif;
+  --font-primary: "Work Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --font-secondary: "Poppins", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
 }
 
 :root.dark {

@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import Image from "next/image";
 import React from "react";
 import SocialRibbon, {
   type SocialRibbonProps,
@@ -44,7 +45,6 @@ function Root({
     </footer>
   );
 }
-
 
 /* ================================ Top (Grid) ================================ */
 
@@ -93,25 +93,26 @@ function Top({
   );
 }
 
-
 /* ================================ Column ================================= */
 
 export interface ColumnProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Título da coluna (opcional) */
   title?: string;
   /** Itens simples (texto + link). Use children para conteúdo livre. */
-  items?: Array<{ label: string; href?: string; target?: string }>;
+  items?: Array<{
+    label: string;
+    href?: string;
+    target?: string;
+    imageUrl?: string;
+  }>;
 }
 
-function Column({
-  title,
-  items,
-  className,
-  children,
-  ...rest
-}: ColumnProps) {
+function Column({ title, items, className, children, ...rest }: ColumnProps) {
   return (
-    <div {...rest} className={clsx("flex flex-col items-center sm:items-start", className)}>
+    <div
+      {...rest}
+      className={clsx("flex flex-col items-center sm:items-start", className)}
+    >
       {title && (
         <h4 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide text-foreground">
           {title}
@@ -129,11 +130,19 @@ function Column({
                 >
                   {it.label}
                 </a>
-              ) : (
+              ) : it.label ? (
                 <span className="text-foreground/70 text-xs sm:text-sm">
                   {it.label}
                 </span>
-              )}
+              ) : it.imageUrl ? (
+                <Image
+                  src={it.imageUrl}
+                  alt={it.label}
+                  width={120}
+                  height={90}
+                  className="max-w-full h-auto -mt-8 -ml-4"
+                />
+              ) : null}
             </li>
           ))}
         </ul>
@@ -143,7 +152,6 @@ function Column({
     </div>
   );
 }
-
 
 /* =============================== Social Row =============================== */
 
@@ -196,7 +204,6 @@ function SocialRow({
   );
 }
 
-
 /* ================================ Bottom ================================= */
 
 export interface BottomProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -205,12 +212,7 @@ export interface BottomProps extends React.HTMLAttributes<HTMLDivElement> {
   bordered?: boolean;
 }
 
-function Bottom({
-  className,
-  children,
-  bordered,
-  ...rest
-}: BottomProps) {
+function Bottom({ className, children, bordered, ...rest }: BottomProps) {
   return (
     <div
       {...rest}
@@ -226,7 +228,6 @@ function Bottom({
     </div>
   );
 }
-
 
 /* ============================== Namespace ============================== */
 

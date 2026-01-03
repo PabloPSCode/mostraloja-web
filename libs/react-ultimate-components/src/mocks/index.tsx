@@ -1,12 +1,7 @@
+import { TireIcon } from "@phosphor-icons/react";
 import type { PhotoVisualizerProps } from "../components/media/PhotoVisualizer";
 import type { Product } from "../components/navigation/Cart/components/CartItem";
 import type { TopMenuProps } from "../components/navigation/TopMenu";
-import {
-  DeviceMobileIcon,
-  FanIcon,
-  LightningIcon,
-  TelevisionIcon,
-} from "@phosphor-icons/react";
 
 export const productCardItemURL =
   "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages8.kabum.com.br%2Fprodutos%2Ffotos%2F520368%2Fprocessador-amd-ryzen-5-5600gt-3-6-ghz-4-6ghz-max-turbo-cache-4mb-6-nucleos-12-threads-am4-100-100001488box_1708024586_gg.jpg&w=640&q=75";
@@ -767,44 +762,51 @@ export const TABLE_DATA = Array.from({ length: 57 }).map((_, i) => {
 
 export const topMenuItems: TopMenuProps["menuItems"] = [
   {
-    label: "Ofertas do dia",
-    href: "#ofertas",
-    icon: <LightningIcon size={18} />,
+    label: "Pneus Goodyear",
+    href: "#goodyear",
+    icon: <TireIcon size={18} />,
     subItems: [
-      { label: "Promoções relâmpago", href: "#flash" },
-      { label: "Cupons", href: "#cupons" },
-      { label: "Outlet", href: "#outlet" },
+      { label: "Pneus aro 13", href: "#goodyear-aro-13" },
+      { label: "Pneus aro 14", href: "#goodyear-aro-14" },
+      { label: "Pneus aro 15", href: "#goodyear-aro-15" },
+      { label: "Pneus aro 16", href: "#goodyear-aro-16" },
+      { label: "Pneus aro 17", href: "#goodyear-aro-17" },
     ],
   },
   {
-    label: "Celulares",
-    href: "#celulares",
-    icon: <DeviceMobileIcon size={18} />,
+    label: "Michelin",
+    href: "#michelin",
+    icon: <TireIcon size={18} />,
     subItems: [
-      { label: "Smartphones", href: "#smartphones" },
-      { label: "Acessórios", href: "#acessorios" },
-      { label: "iPhone", href: "#iphone" },
-      { label: "Android", href: "#android" },
+      { label: "Pneus aro 13", href: "#michelin-aro-13" },
+      { label: "Pneus aro 14", href: "#michelin-aro-14" },
+      { label: "Pneus aro 15", href: "#michelin-aro-15" },
+      { label: "Pneus aro 16", href: "#michelin-aro-16" },
+      { label: "Pneus aro 17", href: "#michelin-aro-17" },
     ],
   },
   {
-    label: "TV e Vídeo",
-    href: "#tv",
-    icon: <TelevisionIcon size={18} />,
+    label: "Dunloop",
+    href: "#dunloop",
+    icon: <TireIcon size={18} />,
     subItems: [
-      { label: "Smart TVs", href: "#smart-tvs" },
-      { label: "Soundbars", href: "#soundbars" },
-      { label: "Projetores", href: "#projetores" },
+      { label: "Pneus aro 13", href: "#dunloop-aro-13" },
+      { label: "Pneus aro 14", href: "#dunloop-aro-14" },
+      { label: "Pneus aro 15", href: "#dunloop-aro-15" },
+      { label: "Pneus aro 16", href: "#dunloop-aro-16" },
+      { label: "Pneus aro 17", href: "#dunloop-aro-17" },
     ],
   },
   {
-    label: "Eletrodomésticos",
-    href: "#eletro",
-    icon: <FanIcon size={18} />,
+    label: "Firestone",
+    href: "#firestone",
+    icon: <TireIcon size={18} />,
     subItems: [
-      { label: "Geladeiras", href: "#geladeiras" },
-      { label: "Lava e seca", href: "#lavaeseca" },
-      { label: "Micro-ondas", href: "#microondas" },
+      { label: "Pneus aro 13", href: "#firestone-aro-13" },
+      { label: "Pneus aro 14", href: "#firestone-aro-14" },
+      { label: "Pneus aro 15", href: "#firestone-aro-15" },
+      { label: "Pneus aro 16", href: "#firestone-aro-16" },
+      { label: "Pneus aro 17", href: "#firestone-aro-17" },
     ],
   },
 ];
@@ -836,12 +838,61 @@ export const samplePhotos: PhotoVisualizerProps["photos"] = [
   },
 ];
 
-export const mockedProducts : Product[] = [
-  {id: '1', name: "Produto A", price: 29.99, quantity: 1, imageUrl: "https://images.unsplash.com/photo-1589578228447-e1a4e481c6c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGtleWJvYXJkfGVufDB8fDB8fHww"},
-  {id: '2', name: "Produto B", price: 49.99, quantity: 2, imageUrl: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW91c2V8ZW58MHx8MHx8fDA%3D"},
-  {id: '3', name: "Produto C", price: 19.99, quantity: 1, imageUrl: "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-  {id: '4', name: "Produto D", price: 99.99, quantity: 1, imageUrl: "https://images.unsplash.com/photo-1669480380758-4b163a33f6f9?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-  {id: '5', name: "Produto E", price: 9.99, quantity: 5, imageUrl: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-  {id: '6', name: "Produto E", price: 9.99, quantity: 5, imageUrl: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-  {id: '7', name: "Produto E", price: 9.99, quantity: 5, imageUrl: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-]
+export const mockedProducts: Product[] = [
+  {
+    id: "1",
+    name: "Produto A",
+    price: 29.99,
+    quantity: 1,
+    imageUrl:
+      "https://images.unsplash.com/photo-1589578228447-e1a4e481c6c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGtleWJvYXJkfGVufDB8fDB8fHww",
+  },
+  {
+    id: "2",
+    name: "Produto B",
+    price: 49.99,
+    quantity: 2,
+    imageUrl:
+      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW91c2V8ZW58MHx8MHx8fDA%3D",
+  },
+  {
+    id: "3",
+    name: "Produto C",
+    price: 19.99,
+    quantity: 1,
+    imageUrl:
+      "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: "4",
+    name: "Produto D",
+    price: 99.99,
+    quantity: 1,
+    imageUrl:
+      "https://images.unsplash.com/photo-1669480380758-4b163a33f6f9?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: "5",
+    name: "Produto E",
+    price: 9.99,
+    quantity: 5,
+    imageUrl:
+      "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: "6",
+    name: "Produto E",
+    price: 9.99,
+    quantity: 5,
+    imageUrl:
+      "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: "7",
+    name: "Produto E",
+    price: 9.99,
+    quantity: 5,
+    imageUrl:
+      "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+];

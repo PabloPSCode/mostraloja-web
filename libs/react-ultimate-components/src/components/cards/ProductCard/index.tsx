@@ -1,10 +1,14 @@
 "use client";
 
-/* eslint-disable react-hooks/set-state-in-effect */
-import { ShoppingCartIcon, StarIcon, TimerIcon } from "@phosphor-icons/react";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { formatBRL } from "../../../utils/format";
+import { ShareNetworkIcon, StarIcon, TimerIcon } from "@phosphor-icons/react";
+import clsx from "clsx";
 import Image from "next/image";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  formatTimeCompleteFromMS,
+  getDefaultDate,
+} from "../../../../../../utils/format";
+import { formatBRL } from "../../../utils/format";
 
 type Rating = 0 | 1 | 2 | 3 | 4 | 5;
 
@@ -23,8 +27,14 @@ interface ProductCardProps {
   installmentValue?: number;
   /** Rótulo do botão (ex.: “Adicionar ao carrinho”). */
   ctaLabel?: string;
+  /** Rótulo do botão secundário */
+  shareLabel?: string;
+  /** Classe opcional aplicada ao cartão */
+  className?: string;
   /** Callback ao clicar no botão de ação. */
   onAddToCart?: () => void;
+  /** Callback ao clicar no botão de compartilhar. */
+  onShare?: () => void;
   /** Callback ao ver os detalhes do produto. */
   onSeeProductDetails?: (productId?: string) => void;
 
@@ -59,24 +69,22 @@ export default function ProductCard({
   rating,
   installments,
   installmentValue,
-  ctaLabel = "Adicionar ao carrinho",
+  ctaLabel = "Tenho interesse",
+  shareLabel = "Compartilhar",
   onAddToCart,
+  onShare,
   onSeeProductDetails,
   showDeal,
   dealPrice,
   dealEndsWithIn,
+  className,
 }: ProductCardProps) {
-  // === Preços formatados ===
   const formattedBasePrice = formatBRL(price);
   const effectiveDealPrice = dealPrice ?? price;
   const formattedDealPrice = formatBRL(effectiveDealPrice);
 
-  // === Lógica do contador de oferta ===
-  // Define o horário final: se não for passado, usa +24h a partir de agora.
   const defaultEnd = useMemo(() => {
-    const d = new Date();
-    d.setHours(d.getHours() + 24);
-    return d;
+    return getDefaultDate();
   }, []);
 
   const dealEndsAt = useMemo<Date>(() => {
@@ -87,14 +95,12 @@ export default function ProductCard({
   }, [dealEndsWithIn, defaultEnd, showDeal]);
 
   const [remainingMs, setRemainingMs] = useState<number>(
-    // eslint-disable-next-line react-hooks/purity
     Math.max(0, dealEndsAt.getTime() - Date.now())
   );
   const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!showDeal) return;
-    // Atualiza imediatamente ao trocar `dealEndsAt`
     setRemainingMs(Math.max(0, dealEndsAt.getTime() - Date.now()));
 
     intervalRef.current = window.setInterval(() => {
@@ -114,21 +120,6 @@ export default function ProductCard({
 
   const dealExpired = showDeal ? remainingMs <= 0 : false;
 
-  // Converte ms -> HH:MM:SS
-  const fmt = (ms: number) => {
-    const total = Math.floor(ms / 1000);
-    const h = Math.floor(total / 3600)
-      .toString()
-      .padStart(2, "0");
-    const m = Math.floor((total % 3600) / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = Math.floor(total % 60)
-      .toString()
-      .padStart(2, "0");
-    return `${h}:${m}:${s}`;
-  };
-
   // === Estrelas de avaliação ===
   const renderStars = (value: Rating) => {
     const stars = Array.from({ length: 5 }, (_, i) => i < value);
@@ -142,7 +133,7 @@ export default function ProductCard({
             key={i}
             size="1em"
             weight={filled ? "fill" : "regular"}
-            className={filled ? "text-yellow-400" : "text-gray-300"}
+            className={filled ? "text-yellow-400" : "text-foreground/30"}
           />
         ))}
       </div>
@@ -151,37 +142,35 @@ export default function ProductCard({
 
   return (
     <div
-      className="
-        group flex flex-col rounded-xl bg-bg-card border-border-card border bg-card shadow-sm
-        p-3 sm:p-4 gap-2 max-w-full w-full
-      "
+      className={clsx(
+        "group flex flex-col rounded-2xl border border-border-card bg-bg-card shadow-sm text-foreground",
+        "p-4 sm:p-5 gap-3 max-w-full w-full transition-transform hover:-translate-y-0.5 hover:shadow-md",
+        className
+      )}
       role="article"
       aria-label={`Produto: ${title}`}
-      onClick={() => onSeeProductDetails?.()}
     >
       {/* Imagem */}
-      <div className="mb-3 sm:mb-4">
-        <div
-          className="
-            w-full overflow-hidden rounded-lg bg-gray-50
-            h-28 sm:h-36 md:h-44
-            flex items-center justify-center relative
-          "
+      <div className="mb-2 sm:mb-3">
+        <button
+          type="button"
+          onClick={() => onSeeProductDetails?.()}
+          className="w-full overflow-hidden h-28 sm:h-32 md:h-40 flex items-center justify-center relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40"
         >
           <Image
             src={imageUrl}
             alt={title}
             width={640}
             height={640}
-            className="h-full w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+            className="w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
             loading="lazy"
             sizes="(min-width: 768px) 33vw, 80vw"
           />
-        </div>
+        </button>
       </div>
 
       {/* Título */}
-      <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground mb-1 line-clamp-2">
+      <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground uppercase tracking-tight mb-1 line-clamp-2">
         {title}
       </h3>
 
@@ -191,22 +180,24 @@ export default function ProductCard({
       )}
 
       {/* Preços */}
-      {showDeal && !dealExpired ? (
-        <div className="flex items-end gap-2 mb-1">
-          <p className="text-2xl md:text-3xl font-extrabold text-green-600">
-            {formattedDealPrice}
-          </p>
-          {effectiveDealPrice < price && (
-            <p className="text-sm sm:text-base text-foreground/70 line-through">
-              {formattedBasePrice}
+      <div className="flex flex-col gap-1 mb-1">
+        {showDeal && !dealExpired ? (
+          <>
+            {effectiveDealPrice < price && (
+              <p className="text-xs sm:text-sm text-foreground/60 font-semibold line-through">
+                {formattedBasePrice}
+              </p>
+            )}
+            <p className="text-xl md:text-2xl font-extrabold text-foreground">
+              {formattedDealPrice}
             </p>
-          )}
-        </div>
-      ) : (
-        <p className="text-2xl md:text-3xl font-extrabold text-green-600 mb-1">
-          {formattedBasePrice}
-        </p>
-      )}
+          </>
+        ) : (
+          <p className="text-xl md:text-2xl font-extrabold text-foreground">
+            {formattedBasePrice}
+          </p>
+        )}
+      </div>
 
       {/* Parcelamento */}
       {installments && installmentValue ? (
@@ -223,19 +214,22 @@ export default function ProductCard({
           {!dealExpired ? (
             <div
               className="
-                inline-flex items-center gap-1 rounded-md bg-orange-50 text-orange-700
-                px-2 py-1 text-[10px] sm:text-xs font-medium
+                inline-flex items-center gap-2 rounded-md
+                 dark:text-primary-200
+                px-3 py-1.5 text-[11px] sm:text-xs font-semibold
               "
               aria-live="polite"
-              aria-label={`Oferta termina em ${fmt(remainingMs)}`}
+              aria-label={`Oferta termina em ${formatTimeCompleteFromMS(
+                remainingMs
+              )}`}
             >
-              <TimerIcon size="1em" weight="bold" />
-              Termina em {fmt(remainingMs)}
+              <TimerIcon size={16} weight="bold" />
+              <span>Termina em {formatTimeCompleteFromMS(remainingMs)}</span>
             </div>
           ) : (
             <div
               className="
-                inline-flex items-center gap-1 rounded-md bg-gray-100 text-gray-600
+                inline-flex items-center gap-1 rounded-md bg-foreground/10 text-foreground/60
                 px-2 py-1 text-[10px] sm:text-xs font-medium
               "
             >
@@ -245,31 +239,40 @@ export default function ProductCard({
         </div>
       )}
 
-      {/* Botão de ação */}
-      <button
-        type="button"
-        onClick={onAddToCart}
-        disabled={showDeal ? dealExpired : false}
-        className={`
-          mt-auto inline-flex items-center justify-center gap-2
-          rounded-md px-3 py-2 sm:px-4 sm:py-2.5
-          text-white text-sm sm:text-base font-medium transition
-          focus:outline-none focus:ring-2 focus:ring-offset-2
-          ${
+      {/* Ações */}
+      <div className="flex flex-col gap-2 mt-auto">
+        <button
+          type="button"
+          onClick={onAddToCart}
+          disabled={showDeal ? dealExpired : false}
+          className={clsx(
+            "inline-flex items-center justify-center gap-2 rounded-md px-4 py-3",
+            "text-sm sm:text-base font-semibold transition",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300/60",
             showDeal && dealExpired
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-primary-600 hover:bg-primary-700 focus:ring-primary-400"
-          }
-        `}
-        aria-label={`${ctaLabel} - ${title}`}
-      >
-        <ShoppingCartIcon
-          size="1em"
-          weight="fill"
-          className="text-current text-base sm:text-lg"
-        />
-        {showDeal && dealExpired ? "Indisponível" : ctaLabel}
-      </button>
+              ? "text-backgroundcursor-not-allowed"
+              : "bg-primary-500 text-background"
+          )}
+          aria-label={`${ctaLabel} - ${title}`}
+        >
+          {showDeal && dealExpired ? "Indisponível" : ctaLabel}
+        </button>
+
+        <button
+          type="button"
+          onClick={onShare}
+          className="
+            inline-flex items-center justify-between gap-2
+            rounded-md border border-foreground/15 px-4 py-3
+            text-sm sm:text-base font-semibold text-foreground
+            transition hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40
+          "
+          aria-label={`${shareLabel} - ${title}`}
+        >
+          <span>{shareLabel}</span>
+          <ShareNetworkIcon size={18} weight="bold" />
+        </button>
+      </div>
     </div>
   );
 }

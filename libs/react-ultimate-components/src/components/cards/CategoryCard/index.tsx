@@ -1,8 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 export interface CategoryCardProps {
   /** Nome da categoria exibida no card. */
@@ -39,9 +39,9 @@ export default function CategoryCard({
       alt={name}
       width={96}
       height={96}
-      className="h-full w-full rounded-full object-cover"
+      className="h-full w-full rounded-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
       loading="lazy"
-      sizes="96px"
+      sizes="(min-width: 768px) 96px, (min-width: 640px) 80px, 64px"
     />
   ) : (
     icon
@@ -53,15 +53,16 @@ export default function CategoryCard({
       target={newTab ? "_blank" : undefined}
       rel={newTab ? "noopener noreferrer" : undefined}
       className={clsx(
-        "group flex flex-col items-center transition-all duration-200 p-4 ",
+        "group flex flex-col items-center gap-3 rounded-xl border border-border-card bg-bg-card p-4 sm:p-5 shadow-sm text-foreground",
+        "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40",
         className
       )}
       aria-label={`Ver categoria ${name}`}
     >
-      <div className="flex h-16 w-16 sm:w-24 sm:h-24 items-center justify-center overflow-hidden rounded-full text-primary-600 text-3xl group-hover:bg-primary-50 dark:group-hover:bg-primary-500/10 bg-foreground/5">
+      <div className="flex h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 items-center justify-center overflow-hidden rounded-full  bg-gray-200 text-primary-600 dark:text-primary-400 text-2xl sm:text-3xl transition-colors ">
         {media}
       </div>
-      <span className="mt-4 text-sm font-semibold text-primary-500 sm:text-base">
+      <span className="text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400 text-center leading-tight line-clamp-2">
         {name}
       </span>
     </a>

@@ -71,7 +71,7 @@ export default function MainArticleImage({
       {/* Conteúdo */}
       <div className="absolute inset-0 flex">
         <div className="flex w-full items-end">
-          <div className="px-5 sm:px-8 md:px-10 pb-5 sm:pb-8 md:pb-10 max-w-6xl">
+          <div className="px-5 sm:px-8 md:px-10 pb-5 sm:pb-8 md:pb-10 max-w-7xl">
             {/* Categoria (pílula) */}
             {!!category && (
               <span
@@ -93,7 +93,7 @@ export default function MainArticleImage({
                 "mt-3 sm:mt-4 text-white drop-shadow",
                 "font-extrabold tracking-[-0.01em] leading-tight",
                 // escala responsiva semelhante ao exemplo
-                "text-2xl sm:text-4xl md:text-5xl lg:text-6xl",
+                "text-2xl sm:text-4xl md:text-5xl lg:text-7xl",
                 titleClassName
               )}
             >

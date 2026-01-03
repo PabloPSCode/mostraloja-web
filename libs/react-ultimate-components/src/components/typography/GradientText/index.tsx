@@ -1,7 +1,7 @@
 "use client";
 
-import { type JSX } from "react";
 import clsx from "clsx";
+import { type JSX } from "react";
 
 export type Direction = "r" | "l" | "t" | "b" | "tr" | "tl" | "br" | "bl";
 
@@ -33,7 +33,7 @@ export interface GradientTextProps {
  * Texto com gradiente usando utilitários do Tailwind.
  * - Sem dependências externas (compatível com React 18/19+).
  * - Ideal para destaques de marketing no mercado brasileiro (títulos de landing, CTAs, etc.).
- * - Combine com classes Tailwind para tamanhos responsivos: `text-4xl md:text-6xl`.
+ * - Combine com classes Tailwind para tamanhos responsivos: `text-4xl md:text-7xl`.
  */
 export default function GradientText({
   as: Tag = "h1",

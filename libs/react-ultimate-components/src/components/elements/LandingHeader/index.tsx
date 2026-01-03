@@ -29,7 +29,7 @@ function Root({
   return (
     <div
       className={clsx(
-        "w-full flex justify-center bg-background text-background z-80 py-1",
+        "w-full flex justify-center bg-background text-background z-40 py-1",
         sticky && "sticky top-0",
         bordered && "border-b border-foreground/10",
         className
@@ -170,7 +170,7 @@ function CTA({ className, label, ...rest }: CTAProps) {
       {...rest}
       className={clsx(
         "inline-flex items-center justify-center rounded-lg",
-        "bg-primary-500 font-secondary hover:opacity-90",
+        "bg-primary-500 font-primary hover:opacity-90",
         "px-4 py-2 text-xs sm:text-sm font-semibold text-white",
         className
       )}

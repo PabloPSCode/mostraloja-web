@@ -1,9 +1,9 @@
 "use client";
 
-import { capitalizeFirst, formatDate } from "../../../utils/format";
 import { FlagCheckeredIcon, MapPinIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import React from "react";
+import { capitalizeFirst, formatDate } from "../../../utils/format";
 
 type Event = {
   title: string;
@@ -64,7 +64,7 @@ export default function Timeline({
         )}
       />
 
-      <ol className="mx-auto grid max-w-6xl gap-10 sm:gap-12 md:gap-16 px-4 md:px-6">
+      <ol className="mx-auto grid max-w-7xl gap-10 sm:gap-12 md:gap-16 px-4 md:px-6">
         {ordered.map((ev, idx) => {
           const isLeft = idx % 2 === 0;
           const isFirst = idx === 0;
