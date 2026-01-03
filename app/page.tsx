@@ -10,6 +10,7 @@ import {
   CategoryCard,
   Footer,
   ImageLink,
+  ItemsSearchList,
   LandingHeader,
   ProductCard,
   SearchInput,
@@ -76,13 +77,20 @@ export default function Home() {
           </div>
         </LandingHeader.Left>
 
-        <div className="flex flex-1 items-center justify-center mx-4">
+        <div className="flex flex-col flex-1 items-center justify-center mx-4 relative">
           <SearchInput
             search={search}
             setSearch={(e) => setSearch(e)}
             placeholder="Pesquise um produto"
             variant="button-highlight"
           />
+          {search.length >= 3 && (
+            <ItemsSearchList
+              searchTerm={search}
+              className="absolute bottom-[-160px] left-0"
+              items={products as never}
+            />
+          )}
         </div>
         <LandingHeader.Right className="flex items-center gap-6">
           <button

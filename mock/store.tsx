@@ -1,5 +1,5 @@
 import { SteeringWheelIcon, TireIcon } from "@phosphor-icons/react";
-import { BannerImage, Category, ISODateString, Product } from "../types";
+import { BannerImage, ICategory, IProduct, ISODateString } from "../types";
 const nowIso: ISODateString = new Date().toISOString();
 
 export const storeData = {
@@ -7,7 +7,7 @@ export const storeData = {
   primaryColor: "#FFCC00",
 };
 
-export const categories: Category[] = [
+export const categories: ICategory[] = [
   {
     id: "cat-pirelli",
     companyId: "company-demo",
@@ -43,7 +43,7 @@ export const categories: Category[] = [
   },
 ];
 
-export const products: Product[] = [
+export const products: IProduct[] = [
   {
     id: "prod-scorpion-at",
     companyId: "company-demo",

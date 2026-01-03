@@ -1,8 +1,8 @@
 export type ID = string;
 export type ISODateString = string;
-export type ProductStatus = "draft" | "active" | "archived";
+export type IProductStatus = "draft" | "active" | "archived";
 
-export interface Category {
+export interface ICategory {
   id?: ID;
   companyId?: ID;
   name: string;
@@ -11,7 +11,7 @@ export interface Category {
   updatedAt?: ISODateString;
 }
 
-export interface Product {
+export interface IProduct {
   id: ID;
   companyId: ID;
 
@@ -21,10 +21,9 @@ export interface Product {
   slug: string; // unique per company
   description?: string;
 
-  status: ProductStatus;
+  status: IProductStatus;
 
-  // Pricing: optional because many local shops prefer "ask price"
-  priceCents?: number; // store as integer to avoid float issues
+  priceCents: number; // store as integer to avoid float issues
   currency?: "BRL";
 
   // Inventory / availability (optional for vitrine MVP)
@@ -37,6 +36,7 @@ export interface Product {
   // Promotion (optional)
   isPromotional?: boolean;
   featuredPosition?: number;
+  shareUrl?: string;
 
   createdAt: ISODateString;
   updatedAt: ISODateString;
