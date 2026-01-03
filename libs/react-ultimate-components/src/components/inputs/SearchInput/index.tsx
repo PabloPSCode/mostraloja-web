@@ -94,7 +94,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             <MagnifyingGlassIcon
               className={clsx(
                 variant === "button-highlight"
-                  ? "text-foreground text-md sm:text-lg mr-2 bg-primary-500 p-1 rounded-md text-white scale-125"
+                  ? "text-foreground text-lg sm:text-xl mr-2 bg-primary-500 p-1 rounded-md text-white scale-125"
                   : "text-foreground/50 text-md sm:text-lg ml-2"
               )}
             />

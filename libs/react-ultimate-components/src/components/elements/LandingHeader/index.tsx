@@ -92,7 +92,7 @@ export interface RightProps {
 function Right({ className, children, ...rest }: RightProps) { return (
   <div
     {...rest}
-    className={clsx("absolute right-6 top-4 md:flex min-w-0 flex items-center justify-end gap-2", className)}
+    className={clsx("absolute right-6 top-4 md:relative md:top-0 md:right-0 md:flex min-w-0 flex items-center justify-end gap-2", className)}
   >
     {children}
   </div>
