@@ -1,7 +1,7 @@
 "use client";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
-import clsx from "clsx";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import useTheme from "react-ultimate-components/src/hooks/useTheme";
 import { topMenuItems } from "react-ultimate-components/src/mocks";
@@ -31,12 +31,33 @@ import {
 export default function Home() {
   const [search, setSearch] = useState("");
   const { theme, setTheme } = useTheme();
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const pathname = usePathname();
+
+  const resolveHref = (href: string) => {
+    if (href.startsWith("#")) {
+      return pathname === "/" ? href : `/${href}`;
+    }
+    return href;
+  };
+
+  const handleToggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
+
+  const menuItems = categories.map((category) => ({
+    label: category.name,
+    name: category.name,
+    href: `#${category.id}`,
+    target: "_self",
+  }));
 
   return (
     <main className="w-full min-h-screen bg-background text-foreground">
       {/* Header */}
       <LandingHeader.Root
-        className="bg-background shadow-sm z-90"
+        className="relative bg-background shadow-sm z-90"
         size="lg"
         bordered={false}
         sticky
@@ -55,14 +76,14 @@ export default function Home() {
           </div>
         </LandingHeader.Left>
 
-        <LandingHeader.Center className="flex flex-1 items-center justify-center mx-4">
+        <div className="flex flex-1 items-center justify-center mx-4">
           <SearchInput
             search={search}
             setSearch={(e) => setSearch(e)}
             placeholder="Pesquise um produto"
-            className={clsx(`bg-${[storeData.primaryColor]}`)}
+            variant="button-highlight"
           />
-        </LandingHeader.Center>
+        </div>
         <LandingHeader.Right className="flex items-center gap-6">
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -74,7 +95,34 @@ export default function Home() {
               <SunIcon size={20} className="text-foreground" />
             )}
           </button>
+          <LandingHeader.MobileMenuToggle
+            open={showMobileMenu}
+            onToggle={handleToggleMobileMenu}
+          />
         </LandingHeader.Right>
+        <LandingHeader.MobileMenuPanel open={showMobileMenu}>
+          <h2 className="text-lg sm:text-xl font-black uppercase text-foreground">
+            Compre por categoria
+          </h2>
+          {menuItems.map((item) => (
+            <li
+              key={item.name}
+              className="inline-block"
+              onClick={handleToggleMobileMenu}
+            >
+              <a
+                href={resolveHref(item.href)}
+                target={item.target}
+                rel={
+                  item.target === "_blank" ? "noopener noreferrer" : undefined
+                }
+                className="text-sm sm:text-base"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </LandingHeader.MobileMenuPanel>
       </LandingHeader.Root>
 
       {/* Top categories */}
@@ -89,12 +137,14 @@ export default function Home() {
 
       {/* Banner */}
       <section className="bg-background max-w-7xl mx-auto">
-        <BannerCarousel
-          items={bannerSlides}
-          showDots={false}
-          loop
-          className="rounded-xl overflow-hidden w-full"
-        />
+        <div className="block p-4">
+          <BannerCarousel
+            items={bannerSlides}
+            showDots={false}
+            loop
+            className="rounded-xl overflow-hidden w-full"
+          />
+        </div>
       </section>
 
       {/* Products */}

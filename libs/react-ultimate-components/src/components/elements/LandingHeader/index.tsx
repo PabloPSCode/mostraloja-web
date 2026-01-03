@@ -41,10 +41,10 @@ function Root({
       >
         <div
           className={clsx(
-            "mx-auto flex w-full items-center justify-between gap-3",
-            size === "sm" && "h-14",
-            size === "md" && "h-16",
-            size === "lg" && "h-20"
+            "mx-auto flex w-full flex-col gap-3 md:flex-row md:items-center md:justify-between",
+            size === "sm" && "md:h-14",
+            size === "md" && "md:h-16",
+            size === "lg" && "md:h-20"
           )}
         >
           {children}
@@ -75,7 +75,7 @@ function Center({ className, children, ...rest }: CenterProps) { return (
   <nav
     {...rest}
     className={clsx(
-      "hidden md:flex min-w-0 flex-1 items-center justify-center",
+      "flex w-full items-center justify-center md:min-w-0 md:flex-1 md:w-auto",
       className
     )}
     aria-label="Navegação principal"
@@ -92,7 +92,7 @@ export interface RightProps {
 function Right({ className, children, ...rest }: RightProps) { return (
   <div
     {...rest}
-    className={clsx("min-w-0 flex items-center justify-end gap-2", className)}
+    className={clsx("absolute right-6 top-4 md:flex min-w-0 flex items-center justify-end gap-2", className)}
   >
     {children}
   </div>
@@ -209,7 +209,7 @@ function MobileMenuPanel({ open, children, cta }: {
 }) {
   if (!open) return null;
   return (
-    <div className="md:hidden absolute left-0 right-0 top-full z-30 w-full border-b border-foreground/10 bg-background/98 backdrop-blur transition">
+    <div className="md:hidden absolute left-0 right-0 top-full z-30 w-full border-b border-foreground/10 bg-background transition py-4">
       <div className="mx-auto max-w-7xl px-3 py-3">
         <ul className="flex flex-col items-center gap-3">{children}</ul>
         {cta && <div className="mt-3">{cta}</div>}

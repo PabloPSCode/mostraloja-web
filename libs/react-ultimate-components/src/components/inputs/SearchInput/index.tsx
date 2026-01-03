@@ -21,6 +21,7 @@ export interface SearchInputProps
   onCancelSearch?: () => void;
   /** Classe opcional para o contêiner externo. */
   containerClassName?: string;
+  variant?: "button-highlight" | "secondary";
 }
 
 /**
@@ -38,6 +39,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
       placeholder,
       disabled,
       onChange,
+      variant = "secondary",
       ...rest
     }: SearchInputProps,
     ref
@@ -58,7 +60,9 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           className={clsx(
             "flex w-full items-center rounded-md bg-background text-foreground placeholder:text-foreground/50 text-sm sm:text-base border",
             "border-gray-300 dark:border-gray-600",
-            "pl-2 py-1 pr-2 sm:pr-3 my-1 h-10",
+            variant === "button-highlight"
+              ? "pl-2 py-0 pr-0 sm:pr-1 my-1 h-10"
+              : "pl-2",
             disabled && "opacity-70 cursor-not-allowed",
             className
           )}
@@ -84,10 +88,16 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
                 onCancelSearch?.();
               }}
             >
-              <XIcon className="text-foreground text-md sm:text-lg ml-2" />
+              <XIcon className="text-foreground text-md sm:text-lg mx-2" />
             </button>
           ) : (
-            <MagnifyingGlassIcon className="text-foreground text-md sm:text-lg ml-2" />
+            <MagnifyingGlassIcon
+              className={clsx(
+                variant === "button-highlight"
+                  ? "text-foreground text-md sm:text-lg mr-2 bg-primary-500 p-1 rounded-md text-white scale-125"
+                  : "text-foreground/50 text-md sm:text-lg ml-2"
+              )}
+            />
           )}
         </div>
       </div>

@@ -37,7 +37,7 @@ function Root({
       className={clsx(
         // Container pai em colunas
         "w-full flex flex-col items-center bg-background text-foreground",
-        bordered && "border-t border-foreground/10",
+        bordered && "border-t border-foreground/10 dark:border-border-card",
         className
       )}
     >
@@ -83,7 +83,7 @@ function Top({
         "mx-auto w-full max-w-7xl px-4 sm:px-6",
         "py-8 sm:py-10",
         "grid grid-cols-1 gap-6 sm:grid-cols-2",
-        bordered && "border-b border-foreground/50",
+        bordered && "border-t border-foreground/10 dark:border-border-card",
         colClass,
         className
       )}
@@ -180,7 +180,7 @@ function SocialRow({
       className={clsx(
         "w-full",
         "bg-muted/20",
-        bordered && "border-t border-foreground/50",
+        bordered && "border-t border-foreground/10 dark:border-border-card",
         className
       )}
     >
@@ -218,7 +218,7 @@ function Bottom({ className, children, bordered, ...rest }: BottomProps) {
       {...rest}
       className={clsx(
         "w-full",
-        bordered && "border-t border-foreground/50",
+        bordered && "border-t border-foreground/10 dark:border-border-card",
         className
       )}
     >
