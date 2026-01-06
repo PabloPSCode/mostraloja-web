@@ -1,13 +1,8 @@
 "use client";
-import {
-  BannerCarousel,
-  Footer,
-  GenericProductDetails,
-  TopMenu,
-} from "react-ultimate-components";
-import { topMenuItems } from "react-ultimate-components/src/mocks";
+
+import { BannerCarousel, Footer, GenericProductDetails, TopMenu } from "../../../libs/react-ultimate-components/src/index.tsx";
 import { products } from "../../../mock/store.tsx";
-import { bannerSlides } from "../../constants/home.tsx";
+import { bannerSlides, topMenuItems } from "../../constants/home.tsx";
 
 export default function Home() {
   return (

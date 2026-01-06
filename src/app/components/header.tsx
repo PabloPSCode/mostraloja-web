@@ -4,13 +4,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
-import {
-  ItemsSearchList,
-  LandingHeader,
-  SearchInput,
-} from "react-ultimate-components";
-import useTheme from "react-ultimate-components/src/hooks/useTheme";
+
 import { categories, products, storeData } from "../../mock/store";
+import useTheme from "../../libs/react-ultimate-components/src/hooks/useTheme";
+import { ItemsSearchList, LandingHeader, SearchInput } from "../../libs/react-ultimate-components/src";
 
 export const metadata: Metadata = {
   title: "MostraLoja",

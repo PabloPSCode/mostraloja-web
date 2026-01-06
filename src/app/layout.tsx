@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Header from "./components/header";
+// @ts-ignore: Allow importing global CSS without type declarations
 import "./globals.css";
 
 export const metadata: Metadata = {

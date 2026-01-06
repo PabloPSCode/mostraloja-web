@@ -1,8 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import useTheme from "react-ultimate-components/src/hooks/useTheme";
-import { topMenuItems } from "react-ultimate-components/src/mocks";
+import { topMenuItems } from "../libs/react-ultimate-components/src/mocks";
 import {
   BannerCarousel,
   CategoryCard,
@@ -18,6 +17,7 @@ import {
   featuredProducts,
   originalPrices,
 } from "./constants/home";
+import useTheme from "../libs/react-ultimate-components/src/hooks/useTheme.ts";
 
 export default function Home() {
   const [search, setSearch] = useState("");
