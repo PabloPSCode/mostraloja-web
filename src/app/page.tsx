@@ -6,13 +6,13 @@ import {
   ProductCard,
   TopMenu,
 } from "../libs/react-ultimate-components/src";
-import { topMenuItems } from "../libs/react-ultimate-components/src/mocks";
 import { categories, products, promotionalImages } from "../mock/store.tsx";
 import {
   bannerSlides,
   dealDeadline,
   featuredProducts,
   originalPrices,
+  topMenuItems
 } from "./constants/home";
 
 export default function Home() {

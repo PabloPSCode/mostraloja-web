@@ -1,14 +1,44 @@
+import { TireIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import { bannerImages, categories, products } from "../../mock/store.tsx";
 
+const normalizeMenuSegment = (value: string) => {
+  const trimmed = value.trim().replace(/^#+/, "");
+  const withoutPrefix = trimmed.replace(/^pneus?\s+/i, "");
+  const base = withoutPrefix || trimmed;
+  return base
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};
+
+const buildProductHref = (categoryLabel: string, subLabel?: string) => {
+  const categorySlug = normalizeMenuSegment(categoryLabel);
+  if (!categorySlug) return "/product";
+  if (!subLabel) return `/product/${categorySlug}`;
+  const subSlug = normalizeMenuSegment(subLabel);
+  if (!subSlug) return `/product/${categorySlug}`;
+  if (subSlug.startsWith(`${categorySlug}-`)) {
+    return `/product/${subSlug}`;
+  }
+  return `/product/${categorySlug}-${subSlug}`;
+};
+
+const tireSizes = [13, 14, 15, 16, 17];
+
 export const topMenuItems = categories.map((category) => ({
   label: category.name,
-  href: `#${category.name}`,
-  icon: <span aria-hidden className="h-2 w-2 rounded-full bg-gray-400" />,
-  subItems: Array.from({ length: 5 }).map((_, index) => ({
-    label: `Opção ${index + 1}`,
-    href: `#${category.name}-option-${index + 1}`,
-  })),
+  href: buildProductHref(category.name),
+  icon: <TireIcon size={24}/>,
+  subItems: tireSizes.map((size) => {
+    const label = `Pneus aro ${size}`;
+    return {
+      label,
+      href: buildProductHref(category.name, label),
+    };
+  }),
 }));
 
 export const featuredProducts = products

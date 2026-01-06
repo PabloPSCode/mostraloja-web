@@ -148,7 +148,7 @@ export const bannerImages: BannerImage[] = [
     id: "banner-offroad",
     companyId: "company-demo",
     imageUrl:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1585252522525-4f9ad48a24ea?q=80&w=954&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     altText: "Aventura off-road com montanhas ao fundo",
     linkUrl: "#ofertas",
     position: 2,
@@ -160,7 +160,7 @@ export const bannerImages: BannerImage[] = [
     id: "banner-urban",
     companyId: "company-demo",
     imageUrl:
-      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1645445522156-9ac06bc7a767?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     altText: "SUV em cenário urbano",
     linkUrl: "#categorias",
     position: 3,

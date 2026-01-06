@@ -3,11 +3,16 @@ import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 
-import { categories, products, storeData } from "../../mock/store";
+import { useRouter } from "next/navigation";
+import {
+  ItemsSearchList,
+  LandingHeader,
+  SearchInput,
+} from "../../libs/react-ultimate-components/src";
 import useTheme from "../../libs/react-ultimate-components/src/hooks/useTheme";
-import { ItemsSearchList, LandingHeader, SearchInput } from "../../libs/react-ultimate-components/src";
+import { categories, products, storeData } from "../../mock/store";
 
 export const metadata: Metadata = {
   title: "MostraLoja",
@@ -18,6 +23,7 @@ export default function Header() {
   const [search, setSearch] = useState("");
   const { theme, setTheme } = useTheme();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const router = useRouter();
 
   const pathname = usePathname();
 
@@ -48,14 +54,19 @@ export default function Header() {
       style={{ zIndex: 9999 }}
     >
       <LandingHeader.Left className="flex items-center">
-        <div className="flex items-center">
+        <div
+          className="flex items-center"
+          role="button"
+          onClick={() => router.push("/")}
+        >
           <Image
             src={storeData.logoUrl}
             alt="Mostraloja Logo"
-            width={40}
-            height={40}
-            className="w-24 sm:w-40 aspect-auto"
+            width={612}
+            height={408}
+            className="h-12 w-auto sm:h-14 md:h-16"
             quality={100}
+            priority
           />
         </div>
       </LandingHeader.Left>
