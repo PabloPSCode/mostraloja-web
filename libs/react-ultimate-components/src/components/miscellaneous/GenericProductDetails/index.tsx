@@ -1,16 +1,15 @@
 "use client";
 
-import { formatBRL } from "../../../utils/format";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
-  HeartIcon,
   ShareNetworkIcon,
   ShoppingCartIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
+import { formatBRL } from "../../../utils/format";
 
 type Photo = {
   /** URL da imagem. */
@@ -43,8 +42,6 @@ export interface GenericProductDetailsProps {
   showHelperText?: boolean;
   /** Callback acionado ao clicar em “Adicionar ao carrinho”. */
   onAddToCart?: (product: Product) => void;
-  /** Callback acionado ao favoritar o produto. */
-  onAddToFavorites?: (product: Product) => void;
   /** Callback acionado ao compartilhar o produto. */
   onShare?: (product: Product) => void;
 }
@@ -56,7 +53,6 @@ export default function GenericProductDetails({
   thumbClassName,
   showHelperText = true,
   onAddToCart,
-  onAddToFavorites,
   onShare,
 }: GenericProductDetailsProps) {
   const safeImages = useMemo(
@@ -113,7 +109,6 @@ export default function GenericProductDetails({
     : null;
 
   const handleAddToCart = () => onAddToCart?.(product);
-  const handleAddToFavorites = () => onAddToFavorites?.(product);
   const handleShare = () => onShare?.(product);
 
   return (
@@ -268,17 +263,9 @@ export default function GenericProductDetails({
             className="w-fit items-center justify-center gap-2 rounded-xl bg-primary-500 px-4 py-3 text-base font-semibold text-white shadow-sm transition focus-visible:outline-none focus-visible:ring-2 "
           >
             <ShoppingCartIcon className="h-5 w-5" weight="bold" />
-            Adicionar ao carrinho
+            Tenho interesse
           </button>
           <div className="flex w-full gap-3 sm:w-auto">
-            <button
-              type="button"
-              onClick={handleAddToFavorites}
-              className="w-fit items-center justify-center gap-2 rounded-xl border border-foreground/15 px-4 py-3 text-sm font-medium text-foreground transition focus-visible:outline-none focus-visible:ring-2  sm:flex-none"
-            >
-              <HeartIcon className="h-5 w-5" weight="bold" />
-              Favorito
-            </button>
             <button
               type="button"
               onClick={handleShare}
