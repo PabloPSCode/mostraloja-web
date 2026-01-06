@@ -1,15 +1,12 @@
 "use client";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { topMenuItems } from "../libs/react-ultimate-components/src/mocks";
 import {
   BannerCarousel,
   CategoryCard,
-  Footer,
   ImageLink,
   ProductCard,
   TopMenu,
 } from "../libs/react-ultimate-components/src";
+import { topMenuItems } from "../libs/react-ultimate-components/src/mocks";
 import { categories, products, promotionalImages } from "../mock/store.tsx";
 import {
   bannerSlides,
@@ -17,33 +14,8 @@ import {
   featuredProducts,
   originalPrices,
 } from "./constants/home";
-import useTheme from "../libs/react-ultimate-components/src/hooks/useTheme.ts";
 
 export default function Home() {
-  const [search, setSearch] = useState("");
-  const { theme, setTheme } = useTheme();
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-
-  const pathname = usePathname();
-
-  const resolveHref = (href: string) => {
-    if (href.startsWith("#")) {
-      return pathname === "/" ? href : `/${href}`;
-    }
-    return href;
-  };
-
-  const handleToggleMobileMenu = () => {
-    setShowMobileMenu(!showMobileMenu);
-  };
-
-  const menuItems = categories.map((category) => ({
-    label: category.name,
-    name: category.name,
-    href: `#${category.id}`,
-    target: "_self",
-  }));
-
   return (
     <main className="w-full min-h-screen bg-background text-foreground">
       {/* Top categories */}
@@ -174,101 +146,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <div className="bg-background text-foreground">
-        <Footer.Root bordered>
-          <Footer.Top columns={4}>
-            <Footer.Column
-              items={[
-                {
-                  href: "#",
-                  label: "Política de Privacidade",
-                },
-                {
-                  href: "#",
-                  label: "Termos de Uso",
-                },
-                {
-                  href: "#",
-                  label: "Política de Cookies",
-                },
-              ]}
-              title="Legal"
-            />
-            <Footer.Column
-              items={[
-                {
-                  label: "Seg–Sex: 08h – 20h",
-                },
-                {
-                  label: "Sáb: 09h – 15h (horário de Brasília)",
-                },
-                {
-                  label: "Fale conosco",
-                },
-              ]}
-              title="Atendimento"
-            />
-            <Footer.Column
-              items={[
-                {
-                  label: "🫴🏼 Retire na loja",
-                },
-                {
-                  label: "🛵 Entrega via motoboy",
-                },
-                {
-                  label: "🚗 Entrega via veículo próprio",
-                },
-              ]}
-              title="Forma de entrega"
-            />
-            <Footer.Column
-              items={[
-                {
-                  imageUrl: "/lets_encrypt.png",
-                  label: "",
-                },
-              ]}
-              title="Site seguro"
-            />
-          </Footer.Top>
-          <Footer.SocialRow
-            iconsClassName="text-foreground/80 hover:text-foreground"
-            items={[
-              {
-                href: "#",
-                iconName: "instagram",
-              },
-              {
-                href: "#",
-                iconName: "facebook",
-              },
-            ]}
-          />
-          <Footer.Bottom>
-            <div className="flex flex-col gap-4 mb-4">
-              <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-                <p>© 2026 Minha Empresa — CNPJ: 00.000.000/0001-00</p>
-                <p className="text-foreground/70">
-                  Av. Wilson Alvarenga, 9999, João Monlevade - MG
-                </p>
-              </div>
-              <p className="text-foreground/70 text-xs">
-                Desenvolvido por{" "}
-                <a
-                  href="https://pablosilvadev.com.br"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 text-xs"
-                >
-                  Pablo Silva Dev
-                </a>
-              </p>
-            </div>
-          </Footer.Bottom>
-        </Footer.Root>
-      </div>
     </main>
   );
 }
