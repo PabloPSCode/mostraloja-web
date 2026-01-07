@@ -4,10 +4,7 @@ import { ShareNetworkIcon, StarIcon, TimerIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  formatTimeCompleteFromMS,
-  getDefaultDate,
-} from "../../../../../../utils/format";
+import { getDefaultDate } from "../../../../../../utils/format";
 import { formatBRL } from "../../../utils/format";
 
 type Rating = 0 | 1 | 2 | 3 | 4 | 5;
@@ -208,34 +205,16 @@ export default function ProductCard({
         <div className="mb-1 sm:mb-2" />
       )}
 
-      {/* Contador de oferta */}
       {showDeal && (
-        <div className="mb-3 sm:mb-4">
-          {!dealExpired ? (
-            <div
-              className="
-                inline-flex items-center gap-2 rounded-md
+        <div
+          className="
+                inline-flex gap-2 rounded-md
                  dark:text-primary-200
                 px-3 py-1.5 text-[11px] sm:text-xs font-semibold
               "
-              aria-live="polite"
-              aria-label={`Oferta termina em ${formatTimeCompleteFromMS(
-                remainingMs
-              )}`}
-            >
-              <TimerIcon size={16} weight="bold" />
-              <span>Termina em {formatTimeCompleteFromMS(remainingMs)}</span>
-            </div>
-          ) : (
-            <div
-              className="
-                inline-flex items-center gap-1 rounded-md bg-foreground/10 text-foreground/60
-                px-2 py-1 text-[10px] sm:text-xs font-medium
-              "
-            >
-              Promoção encerrada
-            </div>
-          )}
+        >
+          <TimerIcon size={20} weight="bold" />
+          <span>Confira a disponibilidade com o vendedor</span>
         </div>
       )}
 
@@ -258,20 +237,22 @@ export default function ProductCard({
           {showDeal && dealExpired ? "Indisponível" : ctaLabel}
         </button>
 
-        <button
-          type="button"
-          onClick={onShare}
-          className="
+        {shareLabel && onShare && (
+          <button
+            type="button"
+            onClick={onShare}
+            className="
             inline-flex items-center justify-between gap-2
             rounded-md border border-foreground/15 px-4 py-3
             text-sm sm:text-base font-semibold text-foreground
             transition hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40
           "
-          aria-label={`${shareLabel} - ${title}`}
-        >
-          <span>{shareLabel}</span>
-          <ShareNetworkIcon size={18} weight="bold" />
-        </button>
+            aria-label={`${shareLabel} - ${title}`}
+          >
+            <span>{shareLabel}</span>
+            <ShareNetworkIcon size={18} weight="bold" />
+          </button>
+        )}
       </div>
     </div>
   );
