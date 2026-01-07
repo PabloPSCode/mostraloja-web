@@ -3,12 +3,17 @@
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
-  ShareNetworkIcon,
   ShoppingCartIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 import { formatBRL } from "../../../utils/format";
 
 type Photo = {
@@ -28,6 +33,7 @@ type Product = {
   discount?: number;
   description: string;
   photos: Photo[];
+  shareUrl?: string;
 };
 
 export interface GenericProductDetailsProps {
@@ -163,7 +169,7 @@ export default function GenericProductDetails({
             className={clsx(
               "relative w-full overflow-hidden bg-foreground/5 max-w-5xl max-h-[60vh]",
               // Mantém proporção elegante e responsiva
-              "aspect-square sm:aspect-[4/3] rounded-md"
+              "aspect-square sm:aspect-4/3 rounded-md"
             )}
             // Acessibilidade: navegação via teclado
             tabIndex={0}
@@ -265,15 +271,22 @@ export default function GenericProductDetails({
             <ShoppingCartIcon className="h-5 w-5" weight="bold" />
             Tenho interesse
           </button>
-          <div className="flex w-full gap-3 sm:w-auto">
-            <button
-              type="button"
-              onClick={handleShare}
-              className="w-fit flex items-center justify-center gap-2 rounded-xl border border-foreground/15 px-4 py-3 text-sm font-medium text-foreground transition focus-visible:outline-none focus-visible:ring-2  sm:flex-none"
-            >
-              <ShareNetworkIcon className="h-5 w-5" weight="bold" />
-              Compartilhar
-            </button>
+          <div className="flex flex-col w-full gap-3 sm:w-auto">
+            <span className="text-sm sm:text-base text-foreground">
+              Compartilhe nas redes sociais:
+            </span>
+            {product.shareUrl && (
+              <div className="w-full flex items-center gap-2">
+                <WhatsappShareButton
+                  url={product.shareUrl}
+                  children={<WhatsappIcon className="rounded-lg w-8 h-8 sm:w-12 sm:h-12" />}
+                />
+                <FacebookShareButton
+                  url={product.shareUrl}
+                  children={<FacebookIcon className="rounded-lg w-8 h-8 sm:w-12 sm:h-12" />}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

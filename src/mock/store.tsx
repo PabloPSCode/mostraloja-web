@@ -65,6 +65,7 @@ export const products: IProduct[] = [
     featuredPosition: 1,
     createdAt: nowIso,
     updatedAt: nowIso,
+    shareUrl: "https://rgpneus.com.br/"
   },
   {
     id: "prod-terrains",
@@ -86,6 +87,7 @@ export const products: IProduct[] = [
     featuredPosition: 2,
     createdAt: nowIso,
     updatedAt: nowIso,
+    shareUrl: "https://rgpneus.com.br/"
   },
   {
     id: "prod-michelin-primacy",
@@ -107,6 +109,7 @@ export const products: IProduct[] = [
     featuredPosition: 3,
     createdAt: nowIso,
     updatedAt: nowIso,
+    shareUrl: "https://rgpneus.com.br/"
   },
   {
     id: "prod-dunlop",
@@ -128,6 +131,7 @@ export const products: IProduct[] = [
     featuredPosition: 4,
     createdAt: nowIso,
     updatedAt: nowIso,
+    shareUrl: "https://rgpneus.com.br/"
   },
 ];
 

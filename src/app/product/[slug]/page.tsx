@@ -42,6 +42,7 @@ export default function Home() {
                 alt: products[0].name,
               })),
               description: products[0].description || "",
+              shareUrl: products[0].shareUrl,
             }}
           />
         </div>
