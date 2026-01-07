@@ -56,14 +56,16 @@ export const dealDeadline = new Date(
   Date.now() + 23 * 60 * 60 * 1000
 ).toISOString();
 
-export const bannerSlides = bannerImages
+const activeBanners = bannerImages
   .filter((banner) => banner.isActive)
-  .sort((a, b) => a.position - b.position)
-  .map((banner) => (
+  .sort((a, b) => a.position - b.position);
+
+const buildBannerSlides = (heightClassName: string) =>
+  activeBanners.map((banner) => (
     <a
       key={banner.id}
       href={banner.linkUrl}
-      className="relative block h-[220px] sm:h-[320px] md:h-[380px]"
+      className={`relative block ${heightClassName}`}
     >
       <Image
         src={banner.imageUrl}
@@ -75,3 +77,8 @@ export const bannerSlides = bannerImages
       />
     </a>
   ));
+
+export const bannerSlides = buildBannerSlides(
+  "h-[220px] sm:h-[320px] md:h-[380px]"
+);
+export const heroBannerSlides = buildBannerSlides("min-h-[60vh]");

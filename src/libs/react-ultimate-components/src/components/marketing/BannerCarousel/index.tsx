@@ -119,7 +119,7 @@ export default function BannerCarousel({
             type="button"
             aria-label="Próximo"
             className={clsx(
-              "absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20",
+              "absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20",
               "inline-flex items-center justify-center rounded-full",
               "bg-transparent text-white",
               isEnd && "opacity-50 cursor-not-allowed"
@@ -178,9 +178,9 @@ export default function BannerCarousel({
           className="w-full"
         >
           {items.map((it, i) => (
-            <SwiperSlide key={i} className="!h-auto">
+            <SwiperSlide key={i} className="min-h-[60vh]">
               {/* Slide wrapper follows your theme tokens */}
-              <div className="w-full h-full rounded-lg bg-card text-card-foreground overflow-hidden">
+              <div className="w-full h-full bg-card text-card-foreground overflow-hidden">
                 {it}
               </div>
             </SwiperSlide>

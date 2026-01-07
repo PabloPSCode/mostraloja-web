@@ -11,6 +11,7 @@ import {
   bannerSlides,
   dealDeadline,
   featuredProducts,
+  heroBannerSlides,
   originalPrices,
   topMenuItems
 } from "./constants/home";
@@ -29,13 +30,13 @@ export default function Home() {
       </div>
 
       {/* Banner */}
-      <section className="bg-background max-w-7xl mx-auto">
+      <section className="bg-background mx-auto">
         <div className="block p-4">
           <BannerCarousel
-            items={bannerSlides}
+            items={heroBannerSlides}
             showDots={false}
             loop
-            className="rounded-xl overflow-hidden w-full"
+            className="overflow-hidden w-full"
           />
         </div>
       </section>

@@ -1,15 +1,14 @@
 "use client";
 import {
-  BannerCarousel,
   GenericProductDetails,
   TopMenu,
 } from "../../../libs/react-ultimate-components/src/index.tsx";
 import { products } from "../../../mock/store.tsx";
-import { bannerSlides, topMenuItems } from "../../constants/home.tsx";
+import { topMenuItems } from "../../constants/home.tsx";
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen bg-background text-foreground">
+    <main className="w-full bg-background text-foreground">
       {/* Top categories */}
       <div className="w-full p-2 bg-background">
         <TopMenu
@@ -19,19 +18,9 @@ export default function Home() {
           subItemClassName="text-foreground/80"
         />
       </div>
-      {/* Banner */}
-      <section className="bg-background max-w-7xl mx-auto">
-        <div className="block p-4">
-          <BannerCarousel
-            items={bannerSlides}
-            showDots={false}
-            loop
-            className="rounded-xl overflow-hidden w-full"
-          />
-        </div>
-      </section>
+
       {/* Products */}
-      <section id="promocoes" className="bg-background py-12 sm:py-14">
+      <section id="produto" className="bg-background py-12 sm:py-24">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4">
           <GenericProductDetails
             product={{
