@@ -61,7 +61,9 @@ export default function Footer() {
           />
         </FooterRC.Top>
         <FooterRC.SocialRow
+          title="Siga-nos nas redes sociais"
           iconsClassName="text-foreground/80 hover:text-foreground"
+          iconsWeight="fill"
           items={[
             {
               href: "#",
@@ -81,7 +83,7 @@ export default function Footer() {
                 Av. Wilson Alvarenga, 9999, João Monlevade - MG
               </p>
             </div>
-            <p className="text-foreground/70 text-xs">
+            <p className="text-foreground/70 text-xs opacity-80">
               Desenvolvido por{" "}
               <a
                 href="https://pablosilvadev.com.br"

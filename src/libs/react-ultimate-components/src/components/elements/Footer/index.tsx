@@ -114,7 +114,7 @@ function Column({ title, items, className, children, ...rest }: ColumnProps) {
       className={clsx("flex flex-col items-center sm:items-start", className)}
     >
       {title && (
-        <h4 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide text-foreground">
+        <h4 className="mb-3 text-xs sm:text-sm font-semibold tracking-wide text-foreground opacity-80">
           {title}
         </h4>
       )}
@@ -126,12 +126,12 @@ function Column({ title, items, className, children, ...rest }: ColumnProps) {
                 <a
                   href={it.href}
                   target={it.target}
-                  className="text-foreground/80 text-xs sm:text-sm hover:text-foreground underline-offset-4 hover:underline"
+                  className="text-foreground/80 opacity-80 text-xs sm:text-sm hover:text-foreground underline-offset-4 hover:underline"
                 >
                   {it.label}
                 </a>
               ) : it.label ? (
-                <span className="text-foreground/70 text-xs sm:text-sm">
+                <span className="text-foreground/70 text-xs sm:text-sm opacity-80">
                   {it.label}
                 </span>
               ) : it.imageUrl ? (
@@ -192,7 +192,7 @@ function SocialRow({
           ) : items ? (
             <SocialRibbon
               items={items}
-              iconsClassName={iconsClassName}
+              iconsClassName={clsx("text-primary-500", iconsClassName)}
               iconsWeight={iconsWeight}
               title={title}
             />
