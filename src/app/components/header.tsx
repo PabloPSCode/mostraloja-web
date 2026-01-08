@@ -3,7 +3,7 @@ import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 import {
@@ -26,6 +26,12 @@ export default function Header() {
   const router = useRouter();
 
   const pathname = usePathname();
+
+  const MIN_SEARCH_LENGTH = 3;
+
+  useEffect(() => {
+    setSearch("");
+  }, [pathname]);
 
   const resolveHref = (href: string) => {
     if (href.startsWith("#")) {
@@ -78,11 +84,12 @@ export default function Header() {
           placeholder="Pesquise um produto"
           variant="button-highlight"
         />
-        {search.length >= 3 && (
+        {search.length >= MIN_SEARCH_LENGTH && (
           <ItemsSearchList
             searchTerm={search}
             className="absolute bottom-[-160px] left-0"
             items={products as never}
+            onItemClick={() => setSearch("")}
           />
         )}
       </div>

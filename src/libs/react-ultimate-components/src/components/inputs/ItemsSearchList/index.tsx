@@ -2,7 +2,8 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import type { ElementType, HTMLAttributes } from "react";
+import { useRouter } from "next/navigation";
+import type { HTMLAttributes } from "react";
 import { useMemo } from "react";
 import { IProduct } from "../../../../../../types";
 
@@ -33,6 +34,8 @@ export default function ItemsSearchList({
   className,
   ...rest
 }: ItemsSearchListProps) {
+  const router = useRouter();
+
   const trimmedTerm = searchTerm.trim();
   const shouldShow = trimmedTerm.length >= MIN_SEARCH_LENGTH;
 
@@ -74,46 +77,41 @@ export default function ItemsSearchList({
           </div>
         ) : (
           <ul className="divide-y divide-foreground/10">
-            {filteredItems.map((item) => {
-              const Wrapper: ElementType = item.name ? "a" : "button";
-              const wrapperProps = item.name
-                ? { href: item.name }
-                : { type: "button" as const };
-
-              return (
-                <li key={item.id}>
-                  <Wrapper
-                    {...wrapperProps}
-                    onClick={() => onItemClick?.(item)}
-                    className={clsx(
-                      "flex w-full items-center gap-3 px-3 py-2 text-left transition",
-                      "hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/30",
-                      itemClassName
-                    )}
-                  >
-                    {item.imageUrls[0] ? (
-                      <Image
-                        src={item.imageUrls[0]}
-                        alt={item.name}
-                        width={40}
-                        height={40}
-                        className="h-10 w-10 rounded-md object-cover bg-white"
-                      />
-                    ) : null}
-                    <div className="flex flex-col">
-                      <span className="text-sm sm:text-base font-medium text-foreground">
-                        {item.name}
+            {filteredItems.map((item) => (
+              <li key={item.id}>
+                <div
+                  onClick={() => {
+                    onItemClick?.(item);
+                    router.push(`/product/${item.slug}`);
+                  }}
+                  className={clsx(
+                    "flex w-full items-center gap-3 px-3 py-2 text-left transition",
+                    "hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/30 cursor-pointer",
+                    itemClassName
+                  )}
+                >
+                  {item.imageUrls[0] ? (
+                    <Image
+                      src={item.imageUrls[0]}
+                      alt={item.name}
+                      width={40}
+                      height={40}
+                      className="h-10 w-10 rounded-md object-cover bg-white"
+                    />
+                  ) : null}
+                  <div className="flex flex-col">
+                    <span className="text-sm sm:text-base font-medium text-foreground">
+                      {item.name}
+                    </span>
+                    {item.description ? (
+                      <span className="text-xs sm:text-sm text-foreground/70">
+                        {item.description}
                       </span>
-                      {item.description ? (
-                        <span className="text-xs sm:text-sm text-foreground/70">
-                          {item.description}
-                        </span>
-                      ) : null}
-                    </div>
-                  </Wrapper>
-                </li>
-              );
-            })}
+                    ) : null}
+                  </div>
+                </div>
+              </li>
+            ))}
           </ul>
         )}
       </div>

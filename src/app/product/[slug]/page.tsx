@@ -6,12 +6,13 @@ import {
 } from "../../../libs/react-ultimate-components/src/index.tsx";
 import { products } from "../../../mock/store.tsx";
 import { topMenuItems } from "../../constants/home.tsx";
-import {usePathname} from 'next/navigation'
+import { usePathname } from "next/navigation";
 
 export default function Home() {
-
   const pathname = usePathname();
-  const currentPath = pathname.replace('/product/', '');
+  const currentPath = pathname.replace("/product/", "");
+  const selectedProduct =
+    products.find((product) => product.slug === currentPath) ?? products[0];
 
   return (
     <main className="w-full bg-background text-foreground">
@@ -35,14 +36,14 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4">
           <GenericProductDetails
             product={{
-              ...products[0],
-              price: products[0].priceCents / 100,
-              photos: products[0].imageUrls.map((url) => ({
+              ...selectedProduct,
+              price: selectedProduct.priceCents / 100,
+              photos: selectedProduct.imageUrls.map((url) => ({
                 src: url,
-                alt: products[0].name,
+                alt: selectedProduct.name,
               })),
-              description: products[0].description || "",
-              shareUrl: products[0].shareUrl,
+              description: selectedProduct.description || "",
+              shareUrl: selectedProduct.shareUrl,
             }}
           />
         </div>
