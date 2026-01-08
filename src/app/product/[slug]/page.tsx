@@ -1,12 +1,18 @@
 "use client";
+import Breadcrumb from "react-ultimate-components/src/components/navigation/BreadCrumb/index.tsx";
 import {
   GenericProductDetails,
   TopMenu,
 } from "../../../libs/react-ultimate-components/src/index.tsx";
 import { products } from "../../../mock/store.tsx";
 import { topMenuItems } from "../../constants/home.tsx";
+import {usePathname} from 'next/navigation'
 
 export default function Home() {
+
+  const pathname = usePathname();
+  const currentPath = pathname.replace('/product/', '');
+
   return (
     <main className="w-full bg-background text-foreground">
       {/* Top categories */}
@@ -19,8 +25,13 @@ export default function Home() {
         />
       </div>
 
+      <div className=" w-full max-w-7xl flex items-center gap-2 mx-auto px-4 pt-4 text-sm text-foreground/70">
+        <span className="min-w-[120px] line-clamp-1 font-semibold">Você está em:</span>
+        <Breadcrumb currentPath={currentPath} />
+      </div>
+
       {/* Products */}
-      <section id="produto" className="bg-background py-12 sm:py-24">
+      <section id="produto" className="bg-background pb-12 sm:pb-24 pt-6 sm:pt-12">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4">
           <GenericProductDetails
             product={{
