@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import {
   BannerCarousel,
   CategoryCard,
@@ -17,6 +18,7 @@ import {
 } from "./constants/home";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <main className="w-full min-h-screen bg-background text-foreground">
       {/* Top categories */}
@@ -68,6 +70,7 @@ export default function Home() {
                   ctaLabel="Tenho interesse"
                   shareLabel="Compartilhar"
                   className="h-full"
+                  onAddToCart={() => router.push(`/product/${product.slug}`)}
                 />
               );
             })}
@@ -120,6 +123,7 @@ export default function Home() {
                   ctaLabel="Tenho interesse"
                   shareLabel="Compartilhar"
                   className="h-full"
+                  onAddToCart={() => router.push(`/product/${product.slug}`)}
                 />
               );
             })}
