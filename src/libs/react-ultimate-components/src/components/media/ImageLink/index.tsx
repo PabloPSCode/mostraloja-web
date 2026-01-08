@@ -14,7 +14,7 @@ export interface ImageLinkProps {
   /** Texto alternativo para acessibilidade. */
   alt?: string;
   /** URL de destino. */
-  href?: string;
+  onSeePromotion?: () => void;
   /** Abre o link em uma nova aba. */
   newTab?: boolean;
   /** Classes extras aplicadas ao container externo. */
@@ -33,12 +33,12 @@ export default function ImageLink({
   width,
   height,
   alt = "Banner promocional",
-  href,
+  onSeePromotion,
   newTab,
   className,
   imageClassName,
 }: ImageLinkProps) {
-  const Wrapper: React.ElementType = href ? "a" : "div";
+  const Wrapper: React.ElementType = onSeePromotion ? "button" : "div";
   const normalizedWidth =
     typeof width === "number" ? `${width}px` : String(width);
   const normalizedHeight =
@@ -59,21 +59,11 @@ export default function ImageLink({
   } else {
     wrapperStyle.height = normalizedHeight;
   }
-  const imageSizes =
-    typeof width === "number" ? `${width}px` : "100vw";
-
-  const wrapperProps = href
-    ? {
-        href,
-        target: newTab ? "_blank" : undefined,
-        rel: newTab ? "noopener noreferrer" : undefined,
-        "aria-label": alt,
-      }
-    : {};
+  const imageSizes = typeof width === "number" ? `${width}px` : "100vw";
 
   return (
     <Wrapper
-      {...wrapperProps}
+      onClick={onSeePromotion}
       className={clsx(
         "group relative block overflow-hidden rounded-md",
         "transition-shadow duration-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",

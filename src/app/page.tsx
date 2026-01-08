@@ -7,13 +7,13 @@ import {
   TopMenu,
 } from "../libs/react-ultimate-components/src";
 import { categories, products, promotionalImages } from "../mock/store.tsx";
+import { sendMessageWhatsapp } from "../utils/helpers.ts";
 import {
-  bannerSlides,
   dealDeadline,
   featuredProducts,
   heroBannerSlides,
   originalPrices,
-  topMenuItems
+  topMenuItems,
 } from "./constants/home";
 
 export default function Home() {
@@ -140,7 +140,12 @@ export default function Home() {
                 width={400}
                 height={300}
                 imgUrl={promo.imageUrl}
-                href="#promocoes"
+                onSeePromotion={() =>
+                  sendMessageWhatsapp(
+                    `Olá, tenho interesse na promoção: ${promo.name}`,
+                    "5531985187963"
+                  )
+                }
                 className="aspect-video"
               />
             ))}

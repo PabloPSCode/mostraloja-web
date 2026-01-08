@@ -1,6 +1,7 @@
 import { TireIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import { bannerImages, categories, products } from "../../mock/store.tsx";
+import { sendMessageWhatsapp } from "../../utils/helpers.ts";
 
 const normalizeMenuSegment = (value: string) => {
   const trimmed = value.trim().replace(/^#+/, "");
@@ -62,10 +63,13 @@ const activeBanners = bannerImages
 
 const buildBannerSlides = (heightClassName: string) =>
   activeBanners.map((banner) => (
-    <a
+    <div
       key={banner.id}
-      href={banner.linkUrl}
-      className={`relative block ${heightClassName}`}
+      onClick={() => sendMessageWhatsapp(
+        `Olá, tenho interesse na promoção: ${banner.altText ?? "sem descrição"}`,
+        "5531985187963"
+      )}
+      className={`relative block ${heightClassName} cursor-pointer`}
     >
       <Image
         src={banner.imageUrl}
@@ -75,7 +79,7 @@ const buildBannerSlides = (heightClassName: string) =>
         priority={banner.position === 1}
         sizes="100vw"
       />
-    </a>
+    </div>
   ));
 
 export const bannerSlides = buildBannerSlides(
