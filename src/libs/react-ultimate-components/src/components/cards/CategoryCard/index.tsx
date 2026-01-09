@@ -8,7 +8,7 @@ export interface CategoryCardProps {
   /** Nome da categoria exibida no card. */
   name: string;
   /** Link para a listagem da categoria. */
-  href: string;
+  onSeeCategory: () => void;
   /** URL da imagem apresentada no card. */
   imgUrl?: string;
   /** Ícone exibido apenas quando nenhuma imagem é enviada. */
@@ -27,7 +27,7 @@ export interface CategoryCardProps {
  */
 export default function CategoryCard({
   name,
-  href,
+  onSeeCategory,
   imgUrl,
   icon,
   className,
@@ -48,9 +48,8 @@ export default function CategoryCard({
   );
 
   return (
-    <a
-      href={href}
-      target={newTab ? "_blank" : undefined}
+    <div
+      role="button"
       rel={newTab ? "noopener noreferrer" : undefined}
       className={clsx(
         "group flex flex-col items-center gap-3 rounded-xl border border-border-card bg-bg-card p-4 sm:p-5 shadow-sm text-foreground",
@@ -58,6 +57,7 @@ export default function CategoryCard({
         className
       )}
       aria-label={`Ver categoria ${name}`}
+      onClick={onSeeCategory}
     >
       <div className="flex h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 items-center justify-center overflow-hidden rounded-full  bg-gray-200 text-primary-600 dark:text-primary-400 text-2xl sm:text-3xl transition-colors ">
         {media}
@@ -65,6 +65,6 @@ export default function CategoryCard({
       <span className="text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400 text-center leading-tight line-clamp-2">
         {name}
       </span>
-    </a>
+    </div>
   );
 }

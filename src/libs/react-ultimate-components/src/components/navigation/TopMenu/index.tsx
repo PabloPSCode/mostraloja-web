@@ -1,17 +1,20 @@
 "use client";
 
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface SubItem {
   label: string;
-  href: string;
+  href?: string;
+  onSeeItem?: () => void;
 }
 interface MenuItem {
   label: string;
   href?: string;
   icon: React.ReactNode;
   subItems?: SubItem[];
+  onSeeItem?: () => void;
 }
 
 export interface TopMenuProps extends React.HTMLAttributes<HTMLElement> {
@@ -32,6 +35,17 @@ interface SubMenuProps {
 
 /* ---------- submenu (abre apenas no item hovered/focado) ---------- */
 const SubMenu = ({ subItems, subItemClassName }: SubMenuProps) => {
+  const router = useRouter();
+  const handleNavigate =
+    (href?: string, onSeeItem?: () => void) =>
+    (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+      onSeeItem?.();
+      if (!href) return;
+      if (!href.startsWith("/")) return;
+      event.preventDefault();
+      router.push(href);
+    };
+
   if (!subItems?.length) return null;
 
   return (
@@ -54,17 +68,33 @@ const SubMenu = ({ subItems, subItemClassName }: SubMenuProps) => {
     >
       {subItems.map((item) => (
         <li key={item.label} role="none">
-          <a
-            role="menuitem"
-            href={item.href}
-            className={clsx(
-              "block rounded-md px-3 py-2 text-sm",
-              "hover:bg-foreground/5 focus:bg-foreground/5 focus:outline-none",
-              subItemClassName
-            )}
-          >
-            {item.label}
-          </a>
+          {item.href ? (
+            <a
+              role="menuitem"
+              href={item.href}
+              onClick={handleNavigate(item.href, item.onSeeItem)}
+              className={clsx(
+                "block rounded-md px-3 py-2 text-sm",
+                "hover:bg-foreground/5 focus:bg-foreground/5 focus:outline-none",
+                subItemClassName
+              )}
+            >
+              {item.label}
+            </a>
+          ) : (
+            <button
+              type="button"
+              role="menuitem"
+              onClick={handleNavigate(undefined, item.onSeeItem)}
+              className={clsx(
+                "block rounded-md px-3 py-2 text-sm text-left",
+                "hover:bg-foreground/5 focus:bg-foreground/5 focus:outline-none",
+                subItemClassName
+              )}
+            >
+              {item.label}
+            </button>
+          )}
         </li>
       ))}
     </ul>
@@ -78,6 +108,17 @@ export default function TopMenu({
   itemClassName,
   subItemClassName,
 }: TopMenuProps) {
+  const router = useRouter();
+  const handleNavigate =
+    (href?: string, onSeeItem?: () => void) =>
+    (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+      onSeeItem?.();
+      if (!href) return;
+      if (!href.startsWith("/")) return;
+      event.preventDefault();
+      router.push(href);
+    };
+
   return (
     <div className="hidden md:flex w-full justify-center">
       <nav
@@ -99,18 +140,35 @@ export default function TopMenu({
                   itemClassName
                 )}
               >
-                <a
-                  href={item.href}
-                  className={clsx(
-                    "inline-flex items-center gap-2 rounded-md px-2 py-1",
-                    "hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40"
-                  )}
-                  aria-haspopup={hasSubmenu ? "true" : undefined}
-                  aria-expanded={hasSubmenu ? "false" : undefined}
-                >
-                  {item.icon}
-                  <span className="whitespace-nowrap">{item.label}</span>
-                </a>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    onClick={handleNavigate(item.href, item.onSeeItem)}
+                    className={clsx(
+                      "inline-flex items-center gap-2 rounded-md px-2 py-1",
+                      "hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40"
+                    )}
+                    aria-haspopup={hasSubmenu ? "true" : undefined}
+                    aria-expanded={hasSubmenu ? "false" : undefined}
+                  >
+                    {item.icon}
+                    <span className="whitespace-nowrap">{item.label}</span>
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleNavigate(undefined, item.onSeeItem)}
+                    className={clsx(
+                      "inline-flex items-center gap-2 rounded-md px-2 py-1",
+                      "hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40"
+                    )}
+                    aria-haspopup={hasSubmenu ? "true" : undefined}
+                    aria-expanded={hasSubmenu ? "false" : undefined}
+                  >
+                    {item.icon}
+                    <span className="whitespace-nowrap">{item.label}</span>
+                  </button>
+                )}
 
                 {hasSubmenu && (
                   <SubMenu
@@ -126,4 +184,3 @@ export default function TopMenu({
     </div>
   );
 }
-

@@ -19,15 +19,16 @@ import {
 
 export default function Home() {
   const router = useRouter();
+
   return (
     <main className="w-full min-h-screen bg-background text-foreground">
       {/* Top categories */}
-      <div className="w-full p-2 bg-background">
+      <div className="w-screen bg-foreground px-2">
         <TopMenu
           menuItems={topMenuItems}
-          className="w-full bg-background"
-          itemClassName="text-sm font-semibold text-foreground"
-          subItemClassName="text-foreground/80"
+          className="w-full bg-foreground text-background"
+          itemClassName="text-sm font-semibold text-background"
+          subItemClassName="text-foreground"
         />
       </div>
 
@@ -70,7 +71,7 @@ export default function Home() {
                   ctaLabel="Tenho interesse"
                   shareLabel="Compartilhar"
                   className="h-full"
-                  onAddToCart={() => router.push(`/product/${product.slug}`)}
+                  onAddToCart={() => router.push(`/produto/${product.slug}`)}
                 />
               );
             })}
@@ -91,7 +92,11 @@ export default function Home() {
                 key={category.id}
                 name={category.name}
                 icon={category.icon}
-                href={category.name}
+                onSeeCategory={() =>
+                  router.push(
+                    `/pesquisa/${category.slug}?search=${category.name}`
+                  )
+                }
               />
             ))}
           </div>
@@ -123,7 +128,7 @@ export default function Home() {
                   ctaLabel="Tenho interesse"
                   shareLabel="Compartilhar"
                   className="h-full"
-                  onAddToCart={() => router.push(`/product/${product.slug}`)}
+                  onAddToCart={() => router.push(`/produto/${product.slug}`)}
                 />
               );
             })}

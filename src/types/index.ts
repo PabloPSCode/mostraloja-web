@@ -6,6 +6,7 @@ export interface ICategory {
   id?: ID;
   companyId?: ID;
   name: string;
+  slug: string;
   icon?: React.ReactNode;
   createdAt?: ISODateString;
   updatedAt?: ISODateString;

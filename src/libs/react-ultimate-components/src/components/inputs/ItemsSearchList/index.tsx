@@ -82,7 +82,7 @@ export default function ItemsSearchList({
                 <div
                   onClick={() => {
                     onItemClick?.(item);
-                    router.push(`/product/${item.slug}`);
+                    router.push(`/produto/${item.slug}`);
                   }}
                   className={clsx(
                     "flex w-full items-center gap-3 px-3 py-2 text-left transition",

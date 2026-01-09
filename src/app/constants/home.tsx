@@ -15,31 +15,18 @@ const normalizeMenuSegment = (value: string) => {
     .replace(/^-+|-+$/g, "");
 };
 
-const buildProductHref = (categoryLabel: string, subLabel?: string) => {
-  const categorySlug = normalizeMenuSegment(categoryLabel);
-  if (!categorySlug) return "/product";
-  if (!subLabel) return `/product/${categorySlug}`;
-  const subSlug = normalizeMenuSegment(subLabel);
-  if (!subSlug) return `/product/${categorySlug}`;
-  if (subSlug.startsWith(`${categorySlug}-`)) {
-    return `/product/${subSlug}`;
-  }
-  return `/product/${categorySlug}-${subSlug}`;
+const buildSearchHref = (category: (typeof categories)[number], subLabel?: string) => {
+  const categorySlug = category.slug || normalizeMenuSegment(category.name);
+  const queryLabel = subLabel ?? category.name;
+  const subSlug = subLabel ? normalizeMenuSegment(subLabel) : "";
+  const slug = subSlug ? `${categorySlug}-${subSlug}` : categorySlug;
+  return `/pesquisa/${slug}?search=${encodeURIComponent(queryLabel)}`;
 };
-
-const tireSizes = [13, 14, 15, 16, 17];
 
 export const topMenuItems = categories.map((category) => ({
   label: category.name,
-  href: buildProductHref(category.name),
-  icon: <TireIcon size={24}/>,
-  subItems: tireSizes.map((size) => {
-    const label = `Pneus aro ${size}`;
-    return {
-      label,
-      href: buildProductHref(category.name, label),
-    };
-  }),
+  href: buildSearchHref(category),
+  icon: <TireIcon size={24}/>
 }));
 
 export const featuredProducts = products

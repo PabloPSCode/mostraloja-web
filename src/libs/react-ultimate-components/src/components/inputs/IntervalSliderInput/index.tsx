@@ -140,7 +140,7 @@ export default function IntervalSliderInput({
 
       <div
         className={clsx(
-          "bg-background px-2 py-0",
+          "bg-transparent px-2 py-0",
           errorMessage &&
             "border-red-500 focus-within:border-red-600 focus-within:ring-red-400/40"
         )}
@@ -174,4 +174,3 @@ export default function IntervalSliderInput({
     </div>
   );
 }
-

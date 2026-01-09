@@ -21,7 +21,7 @@ export default function Checkbox({
   helperText,
   errorMessage,
   disabled = false,
-} : CheckboxProps) {
+}: CheckboxProps) {
   return (
     <div className="block gap-4">
       <div className="flex items-center gap-2 mt-1">
@@ -32,12 +32,6 @@ export default function Checkbox({
           className={`
         inline-flex items-center justify-center
         /* tamanho e borda do quadrado */
-        [&_.rc-checkbox-inner]:!w-4
-        [&_.rc-checkbox-inner]:!h-4
-        [&_.rc-checkbox-inner]:rounded-lg
-        [&_.rc-checkbox-inner]:border-2
-        [&_.rc-checkbox-inner]:border-gray-400
-        [&_.rc-checkbox-inner]:bg-red-200
         /* cor quando marcado */
         [&.rc-checkbox-checked_.rc-checkbox-inner]:!bg-primary-600
         [&.rc-checkbox-checked_.rc-checkbox-inner]:!border-primary-600
@@ -59,4 +53,3 @@ export default function Checkbox({
     </div>
   );
 }
-
