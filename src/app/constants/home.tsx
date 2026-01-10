@@ -1,6 +1,6 @@
 import { TireIcon } from "@phosphor-icons/react";
 import Image from "next/image";
-import { bannerImages, categories, products } from "../../mock/store.tsx";
+import { bannerImages, categories, products, storeData } from "../../mock/store.tsx";
 import { sendMessageWhatsapp } from "../../utils/helpers.ts";
 
 const normalizeMenuSegment = (value: string) => {
@@ -23,10 +23,9 @@ const buildSearchHref = (category: (typeof categories)[number], subLabel?: strin
   return `/pesquisa/${slug}?search=${encodeURIComponent(queryLabel)}`;
 };
 
-export const topMenuItems = categories.map((category) => ({
+export const topMenuItems = storeData.categories.map((category) => ({
   label: category.name,
   href: buildSearchHref(category),
-  icon: <TireIcon size={24}/>
 }));
 
 export const featuredProducts = products

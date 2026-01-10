@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import ThemeTokens from "./components/ThemeTokens";
 // @ts-ignore: Allow importing global CSS without type declarations
 import "./globals.css";
 
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="overflow-x-hidden">
+        <ThemeTokens />
         <Header />
         {children}
         <Footer />

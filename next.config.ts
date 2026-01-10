@@ -10,8 +10,20 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "iili.io",
+      },
+      {
+        protocol: "https",
         hostname: "rgpneus.com.br",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "www.eotica.com.br",
+      },
+      {
+        protocol: "https",
+        hostname: "eotica.vtexassets.com",
+      },
     ],
   },
 };

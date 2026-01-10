@@ -12,7 +12,7 @@ import {
   SearchInput,
 } from "../../libs/react-ultimate-components/src";
 import useTheme from "../../libs/react-ultimate-components/src/hooks/useTheme";
-import { categories, products, storeData } from "../../mock/store";
+import { products, storeData } from "../../mock/store";
 
 export const metadata: Metadata = {
   title: "MostraLoja",
@@ -44,7 +44,7 @@ export default function Header() {
     setShowMobileMenu(!showMobileMenu);
   };
 
-  const menuItems = categories.map((category) => ({
+  const menuItems = storeData.categories.map((category) => ({
     label: category.name,
     name: category.name,
     href: `#${category.id}`,
@@ -66,7 +66,7 @@ export default function Header() {
           onClick={() => router.push("/")}
         >
           <Image
-            src={storeData.logoUrl}
+            src={storeData.store.companyLogoUrl}
             alt="Mostraloja Logo"
             width={612}
             height={408}
@@ -78,6 +78,7 @@ export default function Header() {
       </LandingHeader.Left>
 
       <div className="flex flex-col flex-1 items-center justify-center mx-4 relative">
+        {/* @ts-ignore */}
         <SearchInput
           search={search}
           setSearch={(e) => setSearch(e)}

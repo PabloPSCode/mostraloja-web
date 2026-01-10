@@ -7,7 +7,7 @@ import {
   ProductCard,
   TopMenu,
 } from "../libs/react-ultimate-components/src";
-import { categories, products, promotionalImages } from "../mock/store.tsx";
+import { promotionalImages, storeData } from "../mock/store.tsx";
 import { sendMessageWhatsapp } from "../utils/helpers.ts";
 import {
   dealDeadline,
@@ -87,7 +87,7 @@ export default function Home() {
           </h2>
 
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-            {categories.map((category) => (
+            {storeData.categories.map((category) => (
               <CategoryCard
                 key={category.id}
                 name={category.name}
@@ -111,7 +111,7 @@ export default function Home() {
           </h2>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((product) => {
+            {storeData.products.map((product) => {
               const salePrice = (product.priceCents ?? 0) / 100;
               const originalPrice =
                 originalPrices[product.id] ?? salePrice * 1.12;

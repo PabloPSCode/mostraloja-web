@@ -1,53 +1,90 @@
 "use client";
 import { Footer as FooterRC } from "../../libs/react-ultimate-components";
+import { storeData } from "../../mock/store";
 export default function Footer() {
+  const legalItems = [
+    {
+      href: "#",
+      label: "Política de Privacidade",
+    },
+    {
+      href: "#",
+      label: "Termos de Uso",
+    },
+    {
+      href: "#",
+      label: "Política de Cookies",
+    },
+  ];
+
+  const supportItems = [
+    storeData.store.operation.mondayToFriday && {
+      label: `Seg–Sex: ${storeData.store.operation.mondayToFriday}`,
+    },
+    storeData.store.operation.saturday && {
+      label: `Sáb: ${storeData.store.operation.saturday}`,
+    },
+    storeData.store.operation.sunday && {
+      label: `Dom: ${storeData.store.operation.sunday}`,
+    },
+    storeData.contact.phone && {
+      label: `Telefone: ${storeData.contact.phone}`,
+    },
+    storeData.contact.email && {
+      label: `Email: ${storeData.contact.email}`,
+    },
+  ].filter(Boolean) as { label: string }[];
+
+  const deliveryItems = [
+    storeData.store.deliveryMethods.pickOnStore
+      ? { label: "🫴🏼 Retire na loja" }
+      : null,
+    storeData.store.deliveryMethods.motoBoy
+      ? { label: "🛵 Entrega via motoboy" }
+      : null,
+    storeData.store.deliveryMethods.ownVehicle
+      ? { label: "🚗 Entrega via veículo próprio" }
+      : null,
+  ].filter(Boolean) as { label: string }[];
+
+  const socialItems = [
+    storeData.social_medias.instagram && {
+      href: storeData.social_medias.instagram,
+      iconName: "instagram",
+    },
+    storeData.social_medias.facebook && {
+      href: storeData.social_medias.facebook,
+      iconName: "facebook",
+    },
+  ].filter(Boolean) as { href: string; iconName: "instagram" | "facebook" }[];
+
+  const addressLine = [
+    storeData.address.street,
+    `${storeData.address.city} - ${storeData.address.state}`,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  const addressText = storeData.address.zipCode
+    ? `${addressLine} — CEP: ${storeData.address.zipCode}`
+    : addressLine;
+
+  const footerYear = new Date().getFullYear();
+
   return (
     <div className="bg-background text-foreground">
       <FooterRC.Root bordered>
         <FooterRC.Top columns={4}>
           <FooterRC.Column
-            items={[
-              {
-                href: "#",
-                label: "Política de Privacidade",
-              },
-              {
-                href: "#",
-                label: "Termos de Uso",
-              },
-              {
-                href: "#",
-                label: "Política de Cookies",
-              },
-            ]}
+            items={legalItems}
             title="Legal"
           />
           <FooterRC.Column
-            items={[
-              {
-                label: "Seg–Sex: 08h – 20h",
-              },
-              {
-                label: "Sáb: 09h – 15h (horário de Brasília)",
-              },
-              {
-                label: "Fale conosco",
-              },
-            ]}
+            items={supportItems}
             title="Atendimento"
           />
           <FooterRC.Column
-            items={[
-              {
-                label: "🫴🏼 Retire na loja",
-              },
-              {
-                label: "🛵 Entrega via motoboy",
-              },
-              {
-                label: "🚗 Entrega via veículo próprio",
-              },
-            ]}
+            items={deliveryItems}
             title="Forma de entrega"
           />
           <FooterRC.Column
@@ -64,24 +101,16 @@ export default function Footer() {
           title="Siga-nos nas redes sociais"
           iconsClassName="text-foreground/80 hover:text-foreground"
           iconsWeight="fill"
-          items={[
-            {
-              href: "#",
-              iconName: "instagram",
-            },
-            {
-              href: "#",
-              iconName: "facebook",
-            },
-          ]}
+          items={socialItems}
         />
         <FooterRC.Bottom>
           <div className="flex flex-col gap-4 mb-4">
             <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-              <p>© 2026 Minha Empresa — CNPJ: 00.000.000/0001-00</p>
-              <p className="text-foreground/70">
-                Av. Wilson Alvarenga, 9999, João Monlevade - MG
+              <p>
+                © {footerYear} {storeData.store.name} — CNPJ:{" "}
+                {storeData.legal.cnpj}
               </p>
+              <p className="text-foreground/70">{addressText}</p>
             </div>
             <p className="text-foreground/70 text-xs opacity-80">
               Desenvolvido por{" "}
