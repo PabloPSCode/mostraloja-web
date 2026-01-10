@@ -12,7 +12,7 @@ interface SubItem {
 interface MenuItem {
   label: string;
   href?: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   subItems?: SubItem[];
   onSeeItem?: () => void;
 }
@@ -151,7 +151,7 @@ export default function TopMenu({
                     aria-haspopup={hasSubmenu ? "true" : undefined}
                     aria-expanded={hasSubmenu ? "false" : undefined}
                   >
-                    {item.icon}
+                    {item.icon && item.icon}
                     <span className="whitespace-nowrap">{item.label}</span>
                   </a>
                 ) : (
