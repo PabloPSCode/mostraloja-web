@@ -5,8 +5,9 @@ import {
   CaretCircleRightIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
-import React, { useMemo, useRef, useState } from "react";
-import { A11y, Autoplay, Grid, Navigation, Pagination } from "swiper/modules";
+import React, { useMemo, useRef } from "react";
+import type { Swiper as SwiperInstance } from "swiper";
+import { A11y, Autoplay, Grid, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -56,10 +57,7 @@ export default function BannerCarousel({
   },
   className,
 }: BannerCarouselProps) {
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
-  const [isBeginning, setIsBeginning] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
+  const swiperRef = useRef<SwiperInstance | null>(null);
 
   // Single, full-width slide at all widths; no gaps
   const computedBreakpoints = useMemo(() => {
@@ -98,15 +96,14 @@ export default function BannerCarousel({
         {/* Navigation buttons are OUTSIDE the slides so they work on all slides */}
         {showNavigation && !hidePrevButton && (
           <button
-            ref={prevRef}
             type="button"
             aria-label="Anterior"
+            onClick={() => swiperRef.current?.slidePrev()}
             className={clsx(
               "absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20",
               "inline-flex items-center justify-center rounded-full",
               "w-6 h-6 sm:w-10 sm:h-10",
-              "bg-transparent text-white",
-              isBeginning && "opacity-50 cursor-not-allowed"
+              "bg-transparent text-white"
             )}
           >
             <CaretCircleLeftIcon weight="fill" size={24} />
@@ -115,14 +112,13 @@ export default function BannerCarousel({
 
         {showNavigation && !hideNextButton && (
           <button
-            ref={nextRef}
             type="button"
             aria-label="Próximo"
+            onClick={() => swiperRef.current?.slideNext()}
             className={clsx(
               "absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20",
               "inline-flex items-center justify-center rounded-full",
-              "bg-transparent text-white",
-              isEnd && "opacity-50 cursor-not-allowed"
+              "bg-transparent text-white"
             )}
           >
             <CaretCircleRightIcon weight="fill" size={24} />
@@ -130,30 +126,14 @@ export default function BannerCarousel({
         )}
 
         <Swiper
-          modules={[Navigation, Pagination, Grid, A11y, Autoplay]}
+          modules={[Pagination, Grid, A11y, Autoplay]}
           // Base: one full slide, no spacing; prevents next slide peeking
           slidesPerView={1}
           spaceBetween={0}
           grid={{ rows: 1, fill: "row" }}
           loop={loop}
-          // Wire external buttons
-          onBeforeInit={(swiper) => {
-            // @ts-expect-error Swiper internal typing
-            swiper.params.navigation.prevEl =
-              showNavigation && !hidePrevButton ? prevRef.current : undefined;
-            // @ts-expect-error Swiper internal typing
-            swiper.params.navigation.nextEl =
-              showNavigation && !hideNextButton ? nextRef.current : undefined;
-          }}
-          onAfterInit={(s) => {
-            s.navigation?.init();
-            s.navigation?.update();
-            setIsBeginning(s.isBeginning);
-            setIsEnd(s.isEnd);
-          }}
-          onSlideChange={(s) => {
-            setIsBeginning(s.isBeginning);
-            setIsEnd(s.isEnd);
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
           }}
           // Dots under the banner
           pagination={
