@@ -1,4 +1,4 @@
-import { SteeringWheelIcon, TireIcon } from "@phosphor-icons/react";
+import { SteeringWheelIcon, TireIcon } from "@phosphor-icons/react/dist/ssr";
 import { BannerImage, ICategory, IProduct, ISODateString } from "../types";
 const nowIso: ISODateString = new Date().toISOString();
 

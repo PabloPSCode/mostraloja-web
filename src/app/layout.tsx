@@ -12,12 +12,13 @@ import type { ReactNode } from "react";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import ThemeTokens from "./components/ThemeTokens";
+import {storeData} from '../mock/store'
 // @ts-ignore: Allow importing global CSS without type declarations
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MostraLoja",
-  description: "Next.js 15 starter with TypeScript and TailwindCSS",
+  title: storeData.store.name,
+  description: storeData.store.slogan || "Loja virtual feita com MostraLoja",
 };
 
 const poppins = Poppins({
