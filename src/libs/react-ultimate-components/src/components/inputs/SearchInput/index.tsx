@@ -67,6 +67,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             className
           )}
         >
+          {/* @ts-expect-error react versions incompatibility */}
           <input
             id={inputId}
             ref={ref}
