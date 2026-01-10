@@ -42,11 +42,11 @@
   --color-bg-card: #ffffff;
   --color-border-card: #ffffff;
 
-  --font-primary: "Work Sans", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+  --font-primary: var(--font-montserrat), ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
     "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
-  --font-secondary: "Poppins", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+  --font-secondary: var(--font-montserrat), ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
     "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
 }
 

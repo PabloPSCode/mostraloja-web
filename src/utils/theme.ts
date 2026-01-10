@@ -81,11 +81,83 @@ export const buildScale = (baseHex: string): ColorScale => {
   return result;
 };
 
-export const buildThemeVars = (primaryHex: string, secondaryHex: string) => {
+const FONT_VAR_BY_NAME: Record<string, string> = {
+  poppins: "--font-poppins",
+  raleway: "--font-raleway",
+  ubuntu: "--font-ubuntu",
+  roboto: "--font-roboto",
+  inter: "--font-inter",
+  "work sans": "--font-work-sans",
+  "work_sans": "--font-work-sans",
+  montserrat: "--font-montserrat",
+};
+
+const GENERIC_FAMILIES = new Set([
+  "serif",
+  "sans-serif",
+  "monospace",
+  "cursive",
+  "fantasy",
+  "system-ui",
+  "ui-serif",
+  "ui-sans-serif",
+  "ui-monospace",
+  "ui-rounded",
+  "emoji",
+  "math",
+  "fangsong",
+]);
+
+const resolveFontStack = (fontFamily?: string) => {
+  if (!fontFamily) return undefined;
+  const trimmed = fontFamily.trim();
+  if (!trimmed) return undefined;
+
+  const tokens = trimmed
+    .split(",")
+    .map((token) => token.trim())
+    .filter(Boolean)
+    .map((raw) => {
+      if (raw.startsWith("var(")) {
+        return { raw, normalized: raw, mapped: raw };
+      }
+      const normalized = raw.replace(/^['"]|['"]$/g, "").trim().toLowerCase();
+      const varName = FONT_VAR_BY_NAME[normalized];
+      return {
+        raw,
+        normalized,
+        mapped: varName ? `var(${varName})` : raw,
+      };
+    });
+
+  if (tokens.length === 0) return undefined;
+
+  const parts = tokens.map((token) => token.mapped);
+  const hasMontserrat = parts.some((part) => part.includes("--font-montserrat"));
+
+  if (!hasMontserrat) {
+    const genericIndex = tokens.findIndex((token) =>
+      GENERIC_FAMILIES.has(token.normalized)
+    );
+    if (genericIndex === -1) {
+      parts.push("var(--font-montserrat)");
+    } else {
+      parts.splice(genericIndex, 0, "var(--font-montserrat)");
+    }
+  }
+
+  return parts.join(", ");
+};
+
+export const buildThemeVars = (
+  primaryHex: string,
+  secondaryHex: string,
+  fontFamily?: string
+) => {
   const primary = buildScale(primaryHex);
   const secondary = buildScale(secondaryHex);
 
-  return {
+  const vars: Record<string, string> = {
     "--color-primary-50": primary[50],
     "--color-primary-100": primary[100],
     "--color-primary-200": primary[200],
@@ -106,5 +178,13 @@ export const buildThemeVars = (primaryHex: string, secondaryHex: string) => {
     "--color-secondary-700": secondary[700],
     "--color-secondary-800": secondary[800],
     "--color-secondary-900": secondary[900],
-  } as Record<string, string>;
+  };
+
+  const fontStack = resolveFontStack(fontFamily);
+  if (fontStack) {
+    vars["--font-primary"] = fontStack;
+    vars["--font-secondary"] = fontStack;
+  }
+
+  return vars;
 };

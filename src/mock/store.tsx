@@ -453,6 +453,7 @@ export const storeData = {
   design: {
     primaryColor: "#83770b",
     secondaryColor: "#260a07",
+    fontFamily: "Raleway, sans-serif",
   },
   legal: {
     cnpj: "12.345.678/0001-90",

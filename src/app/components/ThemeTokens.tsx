@@ -9,7 +9,8 @@ export default function ThemeTokens() {
     if (!storeData.design) return;
     const vars = buildThemeVars(
       storeData.design.primaryColor,
-      storeData.design.secondaryColor
+      storeData.design.secondaryColor,
+      storeData.design.fontFamily
     );
     Object.entries(vars).forEach(([key, value]) => {
       document.documentElement.style.setProperty(key, value);
