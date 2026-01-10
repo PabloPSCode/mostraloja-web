@@ -913,6 +913,7 @@ export const storeData = {
   design: {
     primaryColor: "#87bced",
     secondaryColor: "#260a07",
+    fontFamily: "Montserrat, sans-serif",
   },
   legal: {
     cnpj: "13.257.648/0001-90",
