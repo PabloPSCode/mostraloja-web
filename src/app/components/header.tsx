@@ -12,7 +12,7 @@ import {
   SearchInput,
 } from "../../libs/react-ultimate-components/src";
 import useTheme from "../../libs/react-ultimate-components/src/hooks/useTheme";
-import { products, storeData } from "../../mock/store";
+import { categories, products, storeData } from "../../mock/store";
 
 export const metadata: Metadata = {
   title: "MostraLoja",
@@ -44,7 +44,7 @@ export default function Header() {
     setShowMobileMenu(!showMobileMenu);
   };
 
-  const menuItems = storeData.categories.map((category) => ({
+  const menuItems = categories.map((category) => ({
     label: category.name,
     name: category.name,
     href: `#${category.id}`,

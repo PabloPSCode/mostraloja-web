@@ -426,6 +426,11 @@ export const promotionalImages = [
   },
 ];
 
+export const medias = {
+  banners: bannerImages,
+  promotionalImages,
+};
+
 export const storeData = {
   store: {
     name: "MostraLoja Pneus",
@@ -465,12 +470,6 @@ export const storeData = {
     instagram: "https://www.instagram.com/mostralojapneus",
     facebook: "https://www.facebook.com/mostralojapneus",
   },
-  medias: {
-    banners: bannerImages,
-    promotionalImages: promotionalImages,
-  },
-  products: products,
-  categories: categories,
 };
 
 // ========================================= NEW STORE DATA =============================================

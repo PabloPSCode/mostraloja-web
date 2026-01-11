@@ -7,7 +7,6 @@ import { categories, products } from "../../../mock/store.tsx";
 import { sendMessageWhatsapp } from "../../../utils/helpers.ts";
 import FilterControllerCard from "../../components/FilterControllerCard";
 import { topMenuItems } from "../../constants/home.tsx";
-import { storeData } from "../../../mock/store.tsx";
 
 type PriceRange = [number, number];
 
@@ -25,7 +24,7 @@ export default function Home() {
 
   const priceBounds = useMemo<PriceRange>(() => {
     if (!products.length) return [0, 0];
-    const prices = storeData.products.map((product) => product.priceCents / 100);
+    const prices = products.map((product) => product.priceCents / 100);
     return [Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))];
   }, []);
 

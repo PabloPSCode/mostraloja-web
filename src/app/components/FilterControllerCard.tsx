@@ -4,7 +4,6 @@ import clsx from "clsx";
 import { Checkbox, IntervalSliderInput } from "react-ultimate-components";
 import { formatBRL } from "../../libs/react-ultimate-components/src/utils/format";
 import type { ICategory } from "../../types";
-import { storeData } from "../../mock/store";
 
 type PriceRange = [number, number];
 
@@ -65,7 +64,7 @@ export default function FilterControllerCard({
         </div>
 
         <div className="filter-controller-section-content flex flex-col gap-2">
-          {storeData.categories.map((category) => {
+          {categories.map((category) => {
             const categoryId = category.id ?? category.name;
             return (
               <div
