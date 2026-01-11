@@ -7,7 +7,7 @@ import {
   ProductCard,
   TopMenu,
 } from "../libs/react-ultimate-components/src";
-import { categories, products, promotionalImages } from "../mock/store.tsx";
+import { categories, mediaItems, products } from "../mock/store.tsx";
 import { sendMessageWhatsapp } from "../utils/helpers.ts";
 import {
   dealDeadline,
@@ -19,6 +19,9 @@ import {
 
 export default function Home() {
   const router = useRouter();
+  const promotionalItems = mediaItems.filter(
+    (item) => item.imageType === "promotional"
+  );
 
   return (
     <main className="w-full min-h-screen bg-background text-foreground">
@@ -142,19 +145,21 @@ export default function Home() {
             Confira nossas Promoções
           </h2>
           <div className="gap-6  grid grid-cols-2 sm:grid-cols-3 ">
-            {promotionalImages.map((promo) => (
+            {promotionalItems.map((promo) => (
               <ImageLink
                 key={promo.id}
-                width={400}
-                height={300}
+                width={promo.width}
+                height={promo.height}
                 imgUrl={promo.imageUrl}
+                alt={promo.altText ?? promo.promotionalText ?? "Banner promocional"}
                 onSeePromotion={() =>
                   sendMessageWhatsapp(
-                    `Olá, tenho interesse na promoção: ${promo.name}`,
+                    `Olá, tenho interesse na promoção: ${
+                      promo.promotionalText ?? promo.altText ?? "sem descrição"
+                    }`,
                     "5531985187963"
                   )
                 }
-                className="aspect-video"
               />
             ))}
           </div>

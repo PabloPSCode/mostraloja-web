@@ -43,14 +43,16 @@ export interface IProduct {
   updatedAt: ISODateString;
 }
 
-export interface BannerImage {
+export type MediaImageType = "banner" | "promotional";
+
+export interface MediaImage {
   id: ID;
   companyId: ID;
-
   imageUrl: string;
   altText?: string;
   promotionalText?: string;
-
-  // Optional click-through behavior
   linkUrl?: string;
+  imageType: MediaImageType;
+  width: number;
+  height: number;
 }

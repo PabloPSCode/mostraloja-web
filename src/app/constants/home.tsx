@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { bannerImages, categories, products } from "../../mock/store.tsx";
+import { categories, mediaItems, products } from "../../mock/store.tsx";
 import { sendMessageWhatsapp } from "../../utils/helpers.ts";
 
 const normalizeMenuSegment = (value: string) => {
@@ -42,10 +42,10 @@ export const dealDeadline = new Date(
   Date.now() + 23 * 60 * 60 * 1000
 ).toISOString();
 
-const activeBanners = bannerImages;
+const bannerItems = mediaItems.filter((item) => item.imageType === "banner");
 
 const buildBannerSlides = (heightClassName: string) =>
-  activeBanners.map((banner, index) => (
+  bannerItems.map((banner, index) => (
     <div
       key={banner.id}
       onClick={() => sendMessageWhatsapp(
