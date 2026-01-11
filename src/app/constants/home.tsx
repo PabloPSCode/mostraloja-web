@@ -62,6 +62,15 @@ const buildBannerSlides = (heightClassName: string) =>
         priority={index + 1 === 1}
         sizes="100vw"
       />
+      {banner.promotionalText ? (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-4 text-center">
+          <div className="rounded-2xl bg-black/45 px-4 py-3 backdrop-blur-sm sm:px-6 sm:py-4 lg:px-8 lg:py-5">
+            <span className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold text-white drop-shadow">
+              {banner.promotionalText}
+            </span>
+          </div>
+        </div>
+      ) : null}
     </div>
   ));
 

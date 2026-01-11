@@ -49,6 +49,7 @@ export interface BannerImage {
 
   imageUrl: string;
   altText?: string;
+  promotionalText?: string;
 
   // Optional click-through behavior
   linkUrl?: string;
