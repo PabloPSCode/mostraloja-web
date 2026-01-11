@@ -1,8 +1,8 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import clsx from "clsx";
 import Image from "next/image";
-import React from "react";
 
 export interface CategoryCardProps {
   /** Nome da categoria exibida no card. */
@@ -11,8 +11,10 @@ export interface CategoryCardProps {
   onSeeCategory: () => void;
   /** URL da imagem apresentada no card. */
   imgUrl?: string;
-  /** Ícone exibido apenas quando nenhuma imagem é enviada. */
-  icon?: React.ReactNode;
+  /** Nome do ícone (Solar) exibido quando nenhuma imagem é enviada. */
+  iconName?: string;
+  /** Cor do ícone (Solar) exibido quando nenhuma imagem é enviada. */
+  iconColor?: string;
   /** Classes extras aplicadas ao contêiner externo. */
   className?: string;
   /** Abre o link em uma nova aba (opcional). */
@@ -21,18 +23,25 @@ export interface CategoryCardProps {
 
 /**
  * Card clicável para destacar categorias em vitrines ou seções de navegação.
- * Prioriza a imagem fornecida via `imgUrl` e, na ausência dela, aceita qualquer
- * ReactNode como ícone (componente SVG etc.) mantendo uma área padronizada e
+ * Prioriza a imagem fornecida via `imgUrl` e, na ausência dela, renderiza o
+ * ícone Solar informado em `iconName`, mantendo uma área padronizada e
  * responsiva.
  */
 export default function CategoryCard({
   name,
   onSeeCategory,
   imgUrl,
-  icon,
+  iconName,
+  iconColor,
   className,
   newTab,
 }: CategoryCardProps) {
+  const resolvedIconName = iconName?.startsWith("solar:")
+    ? iconName
+    : iconName
+    ? `solar:${iconName}`
+    : undefined;
+
   const media = imgUrl ? (
     <Image
       src={imgUrl}
@@ -43,9 +52,16 @@ export default function CategoryCard({
       loading="lazy"
       sizes="(min-width: 768px) 96px, (min-width: 640px) 80px, 64px"
     />
-  ) : (
-    icon
-  );
+  ) : resolvedIconName ? (
+    <Icon
+      icon={resolvedIconName}
+      className={clsx(
+        iconColor
+          ? `text-${iconColor} "h-8 w-8 sm:h-10 sm:w-10"`
+          : "h-8 w-8 sm:h-10 sm:w-10"
+      )}
+    />
+  ) : null;
 
   return (
     <div

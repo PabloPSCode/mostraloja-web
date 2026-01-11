@@ -1,4 +1,3 @@
-import { EyeIcon, SealCheckIcon, SparkleIcon, SteeringWheelIcon, SunglassesIcon, TagIcon, TireIcon } from "@phosphor-icons/react/dist/ssr";
 import { BannerImage, ICategory, IProduct, ISODateString } from "../types";
 const nowIso: ISODateString = new Date().toISOString();
 
@@ -15,7 +14,7 @@ export const categories: ICategory[] = [
     slug: "pneus-pirelli",
     createdAt: nowIso,
     updatedAt: nowIso,
-    icon: <TireIcon size={48} weight="duotone" />,
+    iconName: "wheel-angle-linear",
   },
   {
     id: "cat-goodyear",
@@ -24,7 +23,7 @@ export const categories: ICategory[] = [
     slug: "pneus-goodyear",
     createdAt: nowIso,
     updatedAt: nowIso,
-    icon: <TireIcon size={48} weight="duotone" />,
+    iconName: "wheel-angle-linear",
   },
   {
     id: "cat-michelin",
@@ -33,7 +32,7 @@ export const categories: ICategory[] = [
     slug: "pneus-michelin",
     createdAt: nowIso,
     updatedAt: nowIso,
-    icon: <SteeringWheelIcon size={48} weight="duotone" />,
+    iconName: "wheel-linear",
   },
   {
     id: "cat-dunlop",
@@ -42,7 +41,7 @@ export const categories: ICategory[] = [
     slug: "pneus-dunlop",
     createdAt: nowIso,
     updatedAt: nowIso,
-    icon: <SteeringWheelIcon size={48} weight="duotone" />,
+    iconName: "wheel-linear",
   },
   {
     id: "cat-levorin",
@@ -51,7 +50,7 @@ export const categories: ICategory[] = [
     slug: "pneus-levorin",
     createdAt: nowIso,
     updatedAt: nowIso,
-    icon: <TireIcon size={48} weight="duotone" />,
+    iconName: "wheel-angle-linear",
   },
   {
     id: "cat-comfort",
@@ -60,7 +59,7 @@ export const categories: ICategory[] = [
     slug: "confort",
     createdAt: nowIso,
     updatedAt: nowIso,
-    icon: <SteeringWheelIcon size={48} weight="duotone" />,
+    iconName: "wheel-linear",
   },
 ];
 
@@ -475,7 +474,6 @@ export const storeData = {
 };
 
 // ========================================= NEW STORE DATA =============================================
-
 
 /** Categories (based on the eÓtica top navigation) */
 // export const categories: ICategory[] = [

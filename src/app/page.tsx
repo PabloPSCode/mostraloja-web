@@ -91,7 +91,7 @@ export default function Home() {
               <CategoryCard
                 key={category.id}
                 name={category.name}
-                icon={category.icon}
+                iconName={category.iconName}
                 onSeeCategory={() =>
                   router.push(
                     `/pesquisa/${category.slug}?search=${category.name}`

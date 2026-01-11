@@ -1,4 +1,3 @@
-import { TireIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import { bannerImages, categories, products, storeData } from "../../mock/store.tsx";
 import { sendMessageWhatsapp } from "../../utils/helpers.ts";
