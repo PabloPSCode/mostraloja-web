@@ -23,18 +23,17 @@ export default function Home() {
   return (
     <main className="w-full min-h-screen bg-background text-foreground">
       {/* Top categories */}
-      <div className="w-screen bg-foreground px-2">
+      <div className="w-screen bg-gray-100 dark:bg-gray-900 px-2">
         <TopMenu
           menuItems={topMenuItems}
-          className="w-full bg-foreground text-background"
-          itemClassName="text-sm font-semibold text-background"
-          subItemClassName="text-foreground"
+          className="w-full bg-gray-100 dark:bg-gray-900 text-background"
+          itemClassName="text-sm font-semibold text-foreground hover:text-foreground"
         />
       </div>
 
       {/* Banner */}
       <section className="bg-background mx-auto">
-        <div className="block p-4">
+        <div className="block">
           <BannerCarousel
             items={heroBannerSlides}
             showDots={false}

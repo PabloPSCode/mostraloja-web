@@ -146,7 +146,7 @@ export default function TopMenu({
                     onClick={handleNavigate(item.href, item.onSeeItem)}
                     className={clsx(
                       "inline-flex items-center gap-2 rounded-md px-2 py-1",
-                      "hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40"
+                      "hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40"
                     )}
                     aria-haspopup={hasSubmenu ? "true" : undefined}
                     aria-expanded={hasSubmenu ? "false" : undefined}
@@ -160,7 +160,7 @@ export default function TopMenu({
                     onClick={handleNavigate(undefined, item.onSeeItem)}
                     className={clsx(
                       "inline-flex items-center gap-2 rounded-md px-2 py-1",
-                      "hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40"
+                      "hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400/40"
                     )}
                     aria-haspopup={hasSubmenu ? "true" : undefined}
                     aria-expanded={hasSubmenu ? "false" : undefined}
