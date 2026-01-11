@@ -43,12 +43,10 @@ export const dealDeadline = new Date(
   Date.now() + 23 * 60 * 60 * 1000
 ).toISOString();
 
-const activeBanners = bannerImages
-  .filter((banner) => banner.isActive)
-  .sort((a, b) => a.position - b.position);
+const activeBanners = bannerImages;
 
 const buildBannerSlides = (heightClassName: string) =>
-  activeBanners.map((banner) => (
+  activeBanners.map((banner, index) => (
     <div
       key={banner.id}
       onClick={() => sendMessageWhatsapp(
@@ -62,7 +60,7 @@ const buildBannerSlides = (heightClassName: string) =>
         alt={banner.altText ?? "Banner promocional"}
         fill
         className="object-cover"
-        priority={banner.position === 1}
+        priority={index + 1 === 1}
         sizes="100vw"
       />
     </div>

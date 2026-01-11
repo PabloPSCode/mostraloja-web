@@ -384,10 +384,6 @@ export const bannerImages: BannerImage[] = [
       "https://images.unsplash.com/photo-1494783367193-149034c05e8f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     altText: "Caminhonete em estrada ao pôr do sol",
     linkUrl: "#promocoes",
-    position: 1,
-    isActive: true,
-    createdAt: nowIso,
-    updatedAt: nowIso,
   },
   {
     id: "banner-offroad",
@@ -396,10 +392,6 @@ export const bannerImages: BannerImage[] = [
       "https://images.unsplash.com/photo-1585252522525-4f9ad48a24ea?q=80&w=954&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     altText: "Aventura off-road com montanhas ao fundo",
     linkUrl: "#ofertas",
-    position: 2,
-    isActive: true,
-    createdAt: nowIso,
-    updatedAt: nowIso,
   },
   {
     id: "banner-urban",
@@ -408,10 +400,6 @@ export const bannerImages: BannerImage[] = [
       "https://images.unsplash.com/photo-1645445522156-9ac06bc7a767?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     altText: "SUV em cenário urbano",
     linkUrl: "#categorias",
-    position: 3,
-    isActive: true,
-    createdAt: nowIso,
-    updatedAt: nowIso,
   },
 ];
 

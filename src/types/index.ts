@@ -52,10 +52,4 @@ export interface BannerImage {
 
   // Optional click-through behavior
   linkUrl?: string;
-
-  position: number;
-  isActive: boolean;
-
-  createdAt: ISODateString;
-  updatedAt: ISODateString;
 }
