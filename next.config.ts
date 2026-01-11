@@ -18,11 +18,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "www.eotica.com.br",
-      },
-      {
-        protocol: "https",
-        hostname: "eotica.vtexassets.com",
+        hostname: "acdn-us.mitiendanube.com",
       },
     ],
   },

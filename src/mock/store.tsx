@@ -481,4 +481,259 @@ export const storeData = {
   },
 };
 
-// ========================================= NEW STORE DATA =============================================
+
+// ===================== NEW STORE DATA (scrapped from https://urbansports.com.br/ ) ==========================
+
+// export const categories = [
+//   {
+//     id: "cat-skates-completos",
+//     companyId: "company-demo",
+//     name: "Skates Completos",
+//     slug: "skates-completos",
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     iconName: "skateboard-linear",
+//   },
+//   {
+//     id: "cat-skate-iniciante",
+//     companyId: "company-demo",
+//     name: "Skate Iniciante",
+//     slug: "skate-iniciante",
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     iconName: "skateboard-linear",
+//   },
+//   {
+//     id: "cat-skate-semi-profissional",
+//     companyId: "company-demo",
+//     name: "Skate Semi Profissional",
+//     slug: "skate-semi-profissional",
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     iconName: "skateboard-linear",
+//   },
+//   {
+//     id: "cat-skate-profissional",
+//     companyId: "company-demo",
+//     name: "Skate Profissional",
+//     slug: "skate-profissional",
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     iconName: "skateboard-linear",
+//   },
+//   {
+//     id: "cat-trucks-e-kits",
+//     companyId: "company-demo",
+//     name: "Trucks e Kits",
+//     slug: "trucks-e-kits",
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     iconName: "truck-linear",
+//   },
+//   {
+//     id: "cat-longboards",
+//     companyId: "company-demo",
+//     name: "Longboards",
+//     slug: "longboards",
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     iconName: "skateboard-linear",
+//   },
+// ];
+
+// export const products = [
+//   {
+//     id: "prod-first-class-naruto-sayajin",
+//     companyId: "company-demo",
+//     categoryId: "cat-skate-iniciante",
+//     name: "Skate completo Street Iniciante First Class - Naruto Sayajin",
+//     slug: "skate-completo-street-iniciante-first-class-naruto-sayajin",
+//     description: "Skate completo iniciante (Street) da linha First Class.",
+//     status: "active",
+//     priceCents: 17990,
+//     currency: "BRL",
+//     isAvailable: false,
+//     coverImageUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/514c12a56c8e12df1cc2cf283aabfd8aawsaccesskeyidakiatclmsgfx4j7tu445expires1697893245signaturehjuxenkd34yt5ww3rlvl5nyf2fjw3d-4a4eed4e6bca227c4916953012559364-1024-1024.webp",
+//     imageUrls: [
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/514c12a56c8e12df1cc2cf283aabfd8aawsaccesskeyidakiatclmsgfx4j7tu445expires1697893245signaturehjuxenkd34yt5ww3rlvl5nyf2fjw3d-4a4eed4e6bca227c4916953012559364-1024-1024.webp",
+//     ],
+//     isPromotional: true,
+//     featuredPosition: 1,
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     shareUrl: "https://urbansports.com.br/",
+//   },
+//   {
+//     id: "prod-frozen-semi-profissional",
+//     companyId: "company-demo",
+//     categoryId: "cat-skate-semi-profissional",
+//     name: "SKATE SEMI PROFISSIONAL MONTADO COMPLETO - Frozen",
+//     slug: "skate-semi-profissional-montado-completo-frozen",
+//     description: "Skate semi profissional montado completo.",
+//     status: "active",
+//     priceCents: 17990,
+//     currency: "BRL",
+//     isAvailable: false,
+//     coverImageUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/5efbd023e8db0a5446c6e2fc8c92a186-f50f36223a83a97df517183664256983-1024-1024.webp",
+//     imageUrls: [
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/5efbd023e8db0a5446c6e2fc8c92a186-f50f36223a83a97df517183664256983-1024-1024.webp",
+//     ],
+//     isPromotional: true,
+//     featuredPosition: 2,
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     shareUrl: "https://urbansports.com.br/",
+//   },
+//   {
+//     id: "prod-brother-semi-profissional",
+//     companyId: "company-demo",
+//     categoryId: "cat-skate-semi-profissional",
+//     name: "SKATE SEMI PROFISSIONAL MONTADO COMPLETO - Brother",
+//     slug: "skate-semi-profissional-montado-completo-brother",
+//     description: "Skate semi profissional montado completo.",
+//     status: "active",
+//     priceCents: 17990,
+//     currency: "BRL",
+//     isAvailable: false,
+//     coverImageUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/55ee4dcbc2075efb43a938829cf2a8ed-12c54257b31def4f2517156280833205-1024-1024.webp",
+//     imageUrls: [
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/55ee4dcbc2075efb43a938829cf2a8ed-12c54257b31def4f2517156280833205-1024-1024.webp",
+//     ],
+//     isPromotional: true,
+//     featuredPosition: 3,
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     shareUrl: "https://urbansports.com.br/",
+//   },
+//   {
+//     id: "prod-pgs-darth-dog-80",
+//     companyId: "company-demo",
+//     categoryId: "cat-skate-profissional",
+//     name: "Skate montado Profissional Progress - PGS - DARTH DOG 8.0",
+//     slug: "skate-montado-profissional-progress-pgs-darth-dog-80",
+//     description: "Skate profissional montado (Progress - PGS).",
+//     status: "active",
+//     priceCents: 26900,
+//     currency: "BRL",
+//     isAvailable: false,
+//     coverImageUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/55ee4dcbc2075efb43a938829cf2a8ed-12c54257b31def4f2517156280833205-1024-1024.webp",
+//     imageUrls: [
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/55ee4dcbc2075efb43a938829cf2a8ed-12c54257b31def4f2517156280833205-1024-1024.webp",
+//     ],
+//     isPromotional: true,
+//     featuredPosition: 4,
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     shareUrl: "https://urbansports.com.br/",
+//   },
+//   {
+//     id: "prod-pgs-pantera",
+//     companyId: "company-demo",
+//     categoryId: "cat-skate-profissional",
+//     name: "Skate montado Profissional Progress - PGS - PANTERA",
+//     slug: "skate-montado-profissional-progress-pgs-pantera",
+//     description: "Skate profissional montado (Progress - PGS).",
+//     status: "active",
+//     priceCents: 26900,
+//     currency: "BRL",
+//     isAvailable: false,
+//     coverImageUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/634fd29d2f5eb6d77a8a68728abb907d-d28efc96d92d59d6fc17273720598705-1024-1024.webp",
+//     imageUrls: [
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/634fd29d2f5eb6d77a8a68728abb907d-d28efc96d92d59d6fc17273720598705-1024-1024.webp",
+//     ],
+//     isPromotional: true,
+//     featuredPosition: 5,
+//     createdAt: nowIso,
+//     updatedAt: nowIso,
+//     shareUrl: "https://urbansports.com.br/",
+//   },
+// ];
+
+// export const mediaItems = [
+//   {
+//     id: "logo-urban-sports",
+//     companyId: "company-demo",
+//     imageUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/themes/common/logo-2030274560-1695231259-73c9f4624d666049306f61c4d38b2b9c1695231259-480-0.webp",
+//     altText: "Logo Urban Sports",
+//     promotionalText: "Urban Sports",
+//     linkUrl: "https://urbansports.com.br/",
+//     imageType: "logo",
+//     width: 480,
+//     height: 0,
+//   },
+//   {
+//     id: "banner-prod-pgs-pantera",
+//     companyId: "company-demo",
+//     imageUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/55ee4dcbc2075efb43a938829cf2a8ed-12c54257b31def4f2517156280833205-1024-1024.webp",
+//     altText: "Skate Profissional PGS - imagem de produto",
+//     promotionalText:
+//       "Skates profissionais montados com frete grátis (conforme vitrine).",
+//     linkUrl: "https://urbansports.com.br/",
+//     imageType: "banner",
+//     width: 1024,
+//     height: 1024,
+//   },
+//   {
+//     id: "promo-black-star-luffy",
+//     companyId: "company-demo",
+//     imageUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/products/634fd29d2f5eb6d77a8a68728abb907d-d28efc96d92d59d6fc17273720598705-1024-1024.webp",
+//     altText: "Black Star LUFFY - imagem de produto",
+//     promotionalText: "Ofertas em skates montados completos.",
+//     linkUrl: "https://urbansports.com.br/",
+//     imageType: "promotional",
+//     width: 1024,
+//     height: 1024,
+//   },
+// ];
+
+// export const storeData = {
+//   store: {
+//     name: "Urban Sports",
+//     slogan: "Loja online de Urban Sports",
+//     operation: {
+//       mondayToFriday: null,
+//       saturday: null,
+//       sunday: null,
+//     },
+//     deliveryMethods: {
+//       pickOnStore: null,
+//       motoBoy: null,
+//       ownVehicle: null,
+//     },
+//     companyLogoUrl:
+//       "https://acdn-us.mitiendanube.com/stores/003/735/760/themes/common/logo-2030274560-1695231259-73c9f4624d666049306f61c4d38b2b9c1695231259-480-0.webp",
+//   },
+//   design: {
+//     primaryColor: "#000000",
+//     secondaryColor: "#ff2b2b",
+//     fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+//   },
+//   legal: {
+//     cnpj: "21.514.687/0001-53",
+//   },
+//   address: {
+//     street: "Rua João Atílio Franzini 170",
+//     city: null,
+//     state: null,
+//     zipCode: null,
+//   },
+//   contact: {
+//     phone: "5511960505678",
+//     email: "[email protected]",
+//     whatsapp: "5511960505678",
+//   },
+//   social_medias: {
+//     instagram: "https://instagram.com/siteurbansports",
+//     facebook: null,
+//   },
+// };
+
+
