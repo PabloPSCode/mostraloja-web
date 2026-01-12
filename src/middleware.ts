@@ -15,7 +15,7 @@ const resolveStoreFromHost = (host: string | null) => {
 
 const resolveStoreFromPath = (pathname: string) => {
   const parts = pathname.split("/");
-  if (parts[1] !== "_sites") return null;
+  if (parts[1] !== "sites") return null;
   const candidate = parts[2];
   return STORE_SUBDOMAINS.has(candidate) ? candidate : null;
 };
@@ -30,14 +30,14 @@ export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-store-slug", store);
 
-  if (url.pathname.startsWith("/_sites/")) {
+  if (url.pathname.startsWith("/sites/")) {
     return NextResponse.next({ request: { headers: requestHeaders } });
   }
 
   url.pathname =
     url.pathname === "/"
-      ? `/_sites/${store}`
-      : `/_sites/${store}${url.pathname}`;
+      ? `/sites/${store}`
+      : `/sites/${store}${url.pathname}`;
 
   return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
 }

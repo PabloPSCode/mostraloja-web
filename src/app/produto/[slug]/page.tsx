@@ -13,7 +13,7 @@ export default function Home() {
   const params = useParams();
   const pathname = usePathname();
   const normalizedPathname =
-    pathname.replace(/^\/_sites\/[^/]+/, "") || "/";
+    pathname.replace(/^\/sites\/[^/]+/, "") || "/";
   const paramSlug = Array.isArray(params?.slug)
     ? params.slug[params.slug.length - 1]
     : params?.slug;

@@ -28,7 +28,7 @@ export default function Header() {
 
   const pathname = usePathname();
   const normalizedPathname =
-    pathname.replace(/^\/_sites\/[^/]+/, "") || "/";
+    pathname.replace(/^\/sites\/[^/]+/, "") || "/";
 
   const MIN_SEARCH_LENGTH = 3;
 

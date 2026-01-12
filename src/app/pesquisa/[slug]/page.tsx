@@ -14,7 +14,7 @@ export default function Home() {
   const { categories, products } = useStore();
   const pathname = usePathname();
   const normalizedPathname =
-    pathname.replace(/^\/_sites\/[^/]+/, "") || "/";
+    pathname.replace(/^\/sites\/[^/]+/, "") || "/";
   const currentPath = normalizedPathname;
   const topMenuItems = buildTopMenuItems(categories);
 
