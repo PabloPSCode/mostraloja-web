@@ -12,7 +12,7 @@ import {
   SearchInput,
 } from "../../libs/react-ultimate-components/src";
 import useTheme from "../../libs/react-ultimate-components/src/hooks/useTheme";
-import { categories, products, storeData } from "../../mock/store";
+import { useStore } from "../providers/StoreProvider";
 
 export const metadata: Metadata = {
   title: "MostraLoja",
@@ -24,8 +24,11 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const router = useRouter();
+  const { storeData, categories, products } = useStore();
 
   const pathname = usePathname();
+  const normalizedPathname =
+    pathname.replace(/^\/_sites\/[^/]+/, "") || "/";
 
   const MIN_SEARCH_LENGTH = 3;
 
@@ -35,7 +38,7 @@ export default function Header() {
 
   const resolveHref = (href: string) => {
     if (href.startsWith("#")) {
-      return pathname === "/" ? href : `/${href}`;
+      return normalizedPathname === "/" ? href : `/${href}`;
     }
     return href;
   };
@@ -44,12 +47,16 @@ export default function Header() {
     setShowMobileMenu(!showMobileMenu);
   };
 
-  const menuItems = categories.map((category) => ({
-    label: category.name,
-    name: category.name,
-    href: `#${category.id}`,
-    target: "_self",
-  }));
+  const menuItems = categories.map((category) => {
+    const anchor = category.id ?? category.slug ?? category.name;
+    return {
+      label: category.name,
+      name: category.name,
+      href: `#${anchor}`,
+      target: "_self",
+    };
+  });
+  const logoUrl = storeData.store.companyLogoUrl || "/lets_encrypt.png";
 
   return (
     <LandingHeader.Root
@@ -66,8 +73,8 @@ export default function Header() {
           onClick={() => router.push("/")}
         >
           <Image
-            src={storeData.store.companyLogoUrl}
-            alt="Mostraloja Logo"
+            src={logoUrl}
+            alt={storeData.store.name || "MostraLoja"}
             width={612}
             height={408}
             className="h-12 w-auto sm:h-14 md:h-16"

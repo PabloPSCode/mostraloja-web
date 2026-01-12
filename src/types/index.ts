@@ -43,7 +43,7 @@ export interface IProduct {
   updatedAt: ISODateString;
 }
 
-export type MediaImageType = "banner" | "promotional";
+export type MediaImageType = "banner" | "promotional" | "logo";
 
 export interface MediaImage {
   id: ID;
@@ -55,4 +55,68 @@ export interface MediaImage {
   imageType: MediaImageType;
   width: number;
   height: number;
+}
+
+export interface StoreOperation {
+  mondayToFriday?: string | null;
+  saturday?: string | null;
+  sunday?: string | null;
+}
+
+export interface StoreDeliveryMethods {
+  pickOnStore?: boolean | null;
+  motoBoy?: boolean | null;
+  ownVehicle?: boolean | null;
+}
+
+export interface StoreIdentity {
+  name: string;
+  slogan?: string | null;
+  operation: StoreOperation;
+  deliveryMethods: StoreDeliveryMethods;
+  companyLogoUrl?: string | null;
+}
+
+export interface StoreDesign {
+  primaryColor?: string | null;
+  secondaryColor?: string | null;
+  fontFamily?: string | null;
+}
+
+export interface StoreLegal {
+  cnpj?: string | null;
+}
+
+export interface StoreAddress {
+  street?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zipCode?: string | null;
+}
+
+export interface StoreContact {
+  phone?: string | null;
+  email?: string | null;
+  whatsapp?: string | null;
+}
+
+export interface StoreSocialMedias {
+  instagram?: string | null;
+  facebook?: string | null;
+}
+
+export interface StoreData {
+  store: StoreIdentity;
+  design?: StoreDesign;
+  legal?: StoreLegal;
+  address?: StoreAddress;
+  contact?: StoreContact;
+  social_medias?: StoreSocialMedias;
+}
+
+export interface StorePayload {
+  storeData: StoreData;
+  categories: ICategory[];
+  products: IProduct[];
+  mediaItems: MediaImage[];
 }

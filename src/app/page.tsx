@@ -1,24 +1,28 @@
 "use client";
 import { useRouter } from "next/navigation";
 import {
-  BannerCarousel,
-  CategoryCard,
-  ImageLink,
-  ProductCard,
-  TopMenu,
+    BannerCarousel,
+    CategoryCard,
+    ImageLink,
+    ProductCard,
+    TopMenu,
 } from "../libs/react-ultimate-components/src";
-import { categories, mediaItems, products } from "../mock/store.tsx";
 import { sendMessageWhatsapp } from "../utils/helpers.ts";
 import {
-  dealDeadline,
-  featuredProducts,
-  heroBannerSlides,
-  originalPrices,
-  topMenuItems,
+    buildFeaturedProducts,
+    buildHeroBannerSlides,
+    buildTopMenuItems,
+    dealDeadline,
+    originalPrices,
 } from "./constants/home";
+import { useStore } from "./providers/StoreProvider";
 
 export default function Home() {
   const router = useRouter();
+  const { categories, products, mediaItems } = useStore();
+  const topMenuItems = buildTopMenuItems(categories);
+  const featuredProducts = buildFeaturedProducts(products);
+  const heroBannerSlides = buildHeroBannerSlides(mediaItems);
   const promotionalItems = mediaItems.filter(
     (item) => item.imageType === "promotional"
   );
@@ -89,18 +93,21 @@ export default function Home() {
           </h2>
 
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-            {categories.map((category) => (
-              <CategoryCard
-                key={category.id}
-                name={category.name}
-                iconName={category.iconName}
-                onSeeCategory={() =>
-                  router.push(
-                    `/pesquisa/${category.slug}?search=${category.name}`
-                  )
-                }
-              />
-            ))}
+            {categories.map((category) => {
+              const categoryKey = category.id ?? category.slug ?? category.name;
+              return (
+                <CategoryCard
+                  key={categoryKey}
+                  name={category.name}
+                  iconName={category.iconName}
+                  onSeeCategory={() =>
+                    router.push(
+                      `/pesquisa/${category.slug}?search=${category.name}`
+                    )
+                  }
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -151,7 +158,9 @@ export default function Home() {
                 width={promo.width}
                 height={promo.height}
                 imgUrl={promo.imageUrl}
-                alt={promo.altText ?? promo.promotionalText ?? "Banner promocional"}
+                alt={
+                  promo.altText ?? promo.promotionalText ?? "Banner promocional"
+                }
                 onSeePromotion={() =>
                   sendMessageWhatsapp(
                     `Olá, tenho interesse na promoção: ${

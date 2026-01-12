@@ -1,7 +1,8 @@
 "use client";
 import { Footer as FooterRC } from "../../libs/react-ultimate-components";
-import { storeData } from "../../mock/store";
+import { useStore } from "../providers/StoreProvider";
 export default function Footer() {
+  const { storeData } = useStore();
   const legalItems = [
     {
       href: "#",
@@ -25,18 +26,18 @@ export default function Footer() {
       label: `Sáb: ${storeData.store.operation.saturday}`,
     },
     storeData.store.operation.sunday && {
-      label: `Dom: ${storeData.store.operation.sunday}`,
+      label: `Dom: ${storeData?.store?.operation?.sunday}`,
     },
-    storeData.contact.phone && {
-      label: `Telefone: ${storeData.contact.phone}`,
+    storeData?.contact?.phone && {
+      label: `Telefone: ${storeData?.contact?.phone}`,
     },
-    storeData.contact.email && {
-      label: `Email: ${storeData.contact.email}`,
+    storeData?.contact?.email && {
+      label: `Email: ${storeData?.contact?.email}`,
     },
   ].filter(Boolean) as { label: string }[];
 
   const deliveryItems = [
-    storeData.store.deliveryMethods.pickOnStore
+    storeData?.store?.deliveryMethods?.pickOnStore
       ? { label: "🫴🏼 Retire na loja" }
       : null,
     storeData.store.deliveryMethods.motoBoy
@@ -48,24 +49,24 @@ export default function Footer() {
   ].filter(Boolean) as { label: string }[];
 
   const socialItems = [
-    storeData.social_medias.instagram && {
+    storeData?.social_medias?.instagram && {
       href: storeData.social_medias.instagram,
       iconName: "instagram",
     },
-    storeData.social_medias.facebook && {
+    storeData?.social_medias?.facebook && {
       href: storeData.social_medias.facebook,
       iconName: "facebook",
     },
   ].filter(Boolean) as { href: string; iconName: "instagram" | "facebook" }[];
 
-  const addressLine = [
-    storeData.address.street,
-    `${storeData.address.city} - ${storeData.address.state}`,
-  ]
+  const cityState = [storeData?.address?.city, storeData?.address?.state]
+    .filter(Boolean)
+    .join(" - ");
+  const addressLine = [storeData?.address?.street, cityState]
     .filter(Boolean)
     .join(", ");
 
-  const addressText = storeData.address.zipCode
+  const addressText = storeData?.address?.zipCode
     ? `${addressLine} — CEP: ${storeData.address.zipCode}`
     : addressLine;
 
@@ -107,8 +108,8 @@ export default function Footer() {
           <div className="flex flex-col gap-4 mb-4">
             <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
               <p>
-                © {footerYear} {storeData.store.name} — CNPJ:{" "}
-                {storeData.legal.cnpj}
+                © {footerYear} {storeData?.store?.name} — CNPJ:{" "}
+                {storeData?.legal?.cnpj}
               </p>
               <p className="text-foreground/70">{addressText}</p>
             </div>

@@ -3,16 +3,20 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { ProductCard, TopMenu } from "react-ultimate-components";
 import Breadcrumb from "react-ultimate-components/src/components/navigation/BreadCrumb/index.tsx";
-import { categories, products } from "../../../mock/store.tsx";
 import { sendMessageWhatsapp } from "../../../utils/helpers.ts";
 import FilterControllerCard from "../../components/FilterControllerCard";
-import { topMenuItems } from "../../constants/home.tsx";
+import { buildTopMenuItems } from "../../constants/home.tsx";
+import { useStore } from "../../providers/StoreProvider";
 
 type PriceRange = [number, number];
 
 export default function Home() {
+  const { categories, products } = useStore();
   const pathname = usePathname();
-  const currentPath = pathname.replace("/produto/", "");
+  const normalizedPathname =
+    pathname.replace(/^\/_sites\/[^/]+/, "") || "/";
+  const currentPath = normalizedPathname;
+  const topMenuItems = buildTopMenuItems(categories);
 
   const searchParams = useSearchParams();
   const query = searchParams.get("search")?.trim() ?? "";
@@ -26,7 +30,7 @@ export default function Home() {
     if (!products.length) return [0, 0];
     const prices = products.map((product) => product.priceCents / 100);
     return [Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))];
-  }, []);
+  }, [products]);
 
   const [priceRange, setPriceRange] = useState<PriceRange>(priceBounds);
   const [minPrice, maxPrice] = priceBounds;
@@ -52,7 +56,7 @@ export default function Home() {
     const matchedId = matchedCategory?.id ?? null;
     setQueryCategoryId(matchedId);
     setSelectedCategories(matchedId ? [matchedId] : []);
-  }, [query]);
+  }, [categories, query]);
 
   useEffect(() => {
     setPriceRange([minPrice, maxPrice]);
@@ -98,7 +102,13 @@ export default function Home() {
 
       return matchesPrice && matchesCategory && matchesSearch;
     });
-  }, [priceRange, queryCategoryId, searchTerm, selectedCategories]);
+  }, [
+    priceRange,
+    queryCategoryId,
+    searchTerm,
+    selectedCategories,
+    products,
+  ]);
 
   return (
     <main className="w-full bg-background text-foreground">

@@ -1,18 +1,39 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import Breadcrumb from "react-ultimate-components/src/components/navigation/BreadCrumb/index.tsx";
 import {
   GenericProductDetails,
   TopMenu,
 } from "../../../libs/react-ultimate-components/src/index.tsx";
-import { products } from "../../../mock/store.tsx";
-import { topMenuItems } from "../../constants/home.tsx";
+import { buildTopMenuItems } from "../../constants/home.tsx";
+import { useStore } from "../../providers/StoreProvider";
 
 export default function Home() {
+  const { products, categories } = useStore();
+  const params = useParams();
   const pathname = usePathname();
-  const currentPath = pathname.replace("/produto/", "");
+  const normalizedPathname =
+    pathname.replace(/^\/_sites\/[^/]+/, "") || "/";
+  const paramSlug = Array.isArray(params?.slug)
+    ? params.slug[params.slug.length - 1]
+    : params?.slug;
+  const currentPath =
+    paramSlug || normalizedPathname.replace("/produto/", "");
   const selectedProduct =
     products.find((product) => product.slug === currentPath) ?? products[0];
+  const topMenuItems = buildTopMenuItems(categories);
+
+  if (!selectedProduct) {
+    return (
+      <main className="w-full bg-background text-foreground">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-12">
+          <h2 className="text-xl sm:text-2xl font-black uppercase text-foreground">
+            Produto não encontrado
+          </h2>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="w-full bg-background text-foreground">

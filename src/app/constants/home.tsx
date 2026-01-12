@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { categories, mediaItems, products } from "../../mock/store.tsx";
+import type { ICategory, IProduct, MediaImage } from "../../types";
 import { sendMessageWhatsapp } from "../../utils/helpers.ts";
 
 const normalizeMenuSegment = (value: string) => {
@@ -14,7 +14,7 @@ const normalizeMenuSegment = (value: string) => {
     .replace(/^-+|-+$/g, "");
 };
 
-const buildSearchHref = (category: (typeof categories)[number], subLabel?: string) => {
+export const buildSearchHref = (category: ICategory, subLabel?: string) => {
   const categorySlug = category.slug || normalizeMenuSegment(category.name);
   const queryLabel = subLabel ?? category.name;
   const subSlug = subLabel ? normalizeMenuSegment(subLabel) : "";
@@ -22,14 +22,16 @@ const buildSearchHref = (category: (typeof categories)[number], subLabel?: strin
   return `/pesquisa/${slug}?search=${encodeURIComponent(queryLabel)}`;
 };
 
-export const topMenuItems = categories.map((category) => ({
-  label: category.name,
-  href: buildSearchHref(category),
-}));
+export const buildTopMenuItems = (categories: ICategory[]) =>
+  categories.map((category) => ({
+    label: category.name,
+    href: buildSearchHref(category),
+  }));
 
-export const featuredProducts = products
-  .filter((product) => product.isPromotional)
-  .sort((a, b) => (a.featuredPosition ?? 0) - (b.featuredPosition ?? 0));
+export const buildFeaturedProducts = (products: IProduct[]) =>
+  products
+    .filter((product) => product.isPromotional)
+    .sort((a, b) => (a.featuredPosition ?? 0) - (b.featuredPosition ?? 0));
 
 export const originalPrices: Record<string, number> = {
   "prod-scorpion-at": 799.99,
@@ -42,16 +44,20 @@ export const dealDeadline = new Date(
   Date.now() + 23 * 60 * 60 * 1000
 ).toISOString();
 
-const bannerItems = mediaItems.filter((item) => item.imageType === "banner");
-
-const buildBannerSlides = (heightClassName: string) =>
-  bannerItems.map((banner, index) => (
+const buildBannerSlides = (
+  mediaItems: MediaImage[],
+  heightClassName: string
+) => {
+  const bannerItems = mediaItems.filter((item) => item.imageType === "banner");
+  return bannerItems.map((banner, index) => (
     <div
       key={banner.id}
-      onClick={() => sendMessageWhatsapp(
-        `Olá, tenho interesse na promoção: ${banner.altText ?? "sem descrição"}`,
-        "5531985187963"
-      )}
+      onClick={() =>
+        sendMessageWhatsapp(
+          `Olá, tenho interesse na promoção: ${banner.altText ?? "sem descrição"}`,
+          "5531985187963"
+        )
+      }
       className={`relative block ${heightClassName} cursor-pointer`}
     >
       <Image
@@ -73,8 +79,9 @@ const buildBannerSlides = (heightClassName: string) =>
       ) : null}
     </div>
   ));
+};
 
-export const bannerSlides = buildBannerSlides(
-  "h-[220px] sm:h-[320px] md:h-[380px]"
-);
-export const heroBannerSlides = buildBannerSlides("min-h-[60vh]");
+export const buildStandardBannerSlides = (mediaItems: MediaImage[]) =>
+  buildBannerSlides(mediaItems, "h-[220px] sm:h-[320px] md:h-[380px]");
+export const buildHeroBannerSlides = (mediaItems: MediaImage[]) =>
+  buildBannerSlides(mediaItems, "min-h-[60vh]");
