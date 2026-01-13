@@ -27,6 +27,16 @@ const STORE_SOURCES = {
     mediaItems:
       "https://gist.githubusercontent.com/PabloPSCode/ceae3c4f397c72f0828ecd7bb45c13a7/raw/tire_store_media.json",
   },
+  clothesstore: {
+    storeData:
+      "https://gist.githubusercontent.com/PabloPSCode/d200cdf10b4754e70454e687b705bd28/raw/clothes_store_store-data.json",
+    products:
+      "https://gist.githubusercontent.com/PabloPSCode/6af04aea4007548962ed287278a9361e/raw/clothes_store_products.json",
+    categories:
+      "https://gist.githubusercontent.com/PabloPSCode/c4da0be63584c560069db29271e84565/raw/clothes_store_categories.json",
+    mediaItems:
+      "https://gist.githubusercontent.com/PabloPSCode/6219a17345918a7b650c1408990ce041/raw/clothes_store_media.json",
+  },
 } as const;
 
 type StoreSlug = keyof typeof STORE_SOURCES;
