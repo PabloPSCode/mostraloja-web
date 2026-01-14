@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const STORE_SUBDOMAINS = new Set(["skatestore", "tirestore" , "clothesstore"]);
+const STORE_SUBDOMAINS = new Set(["skatestore", "tirestore" , "womanstore"]);
 
 const resolveStoreFromHost = (host: string | null) => {
   if (!host) return null;

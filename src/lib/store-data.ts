@@ -27,15 +27,15 @@ const STORE_SOURCES = {
     mediaItems:
       "https://gist.githubusercontent.com/PabloPSCode/ceae3c4f397c72f0828ecd7bb45c13a7/raw/tire_store_media.json",
   },
-  clothesstore: {
+  womanstore: {
     storeData:
-      "https://gist.githubusercontent.com/PabloPSCode/d200cdf10b4754e70454e687b705bd28/raw/clothes_store_store-data.json",
+      "https://gist.githubusercontent.com/PabloPSCode/708a5e93ac6006421d7f6ad2d9db549b/raw/woman_store_store-data.json",
     products:
-      "https://gist.githubusercontent.com/PabloPSCode/6af04aea4007548962ed287278a9361e/raw/clothes_store_products.json",
+      "https://gist.githubusercontent.com/PabloPSCode/08eb9b8ecd02aa19df2b855ad369e402/raw/woman_store_products.json",
     categories:
-      "https://gist.githubusercontent.com/PabloPSCode/c4da0be63584c560069db29271e84565/raw/clothes_store_categories.json",
+      "https://gist.githubusercontent.com/PabloPSCode/294e457b84dbd03325e2ec55aea972cb/raw/woman_store_categories.json",
     mediaItems:
-      "https://gist.githubusercontent.com/PabloPSCode/6219a17345918a7b650c1408990ce041/raw/clothes_store_media.json",
+      "https://gist.githubusercontent.com/PabloPSCode/127d9132e834db826d291db6477feef3/raw/woman_store_media.json",
   },
 } as const;
 
