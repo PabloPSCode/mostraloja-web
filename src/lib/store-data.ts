@@ -41,7 +41,7 @@ const STORE_SOURCES = {
 
 type StoreSlug = keyof typeof STORE_SOURCES;
 
-const DEFAULT_STORE_SLUG: StoreSlug = "skatestore";
+const DEFAULT_STORE_SLUG: StoreSlug = "womanstore";
 
 const DEFAULT_STORE_DATA: StoreData = {
   store: {

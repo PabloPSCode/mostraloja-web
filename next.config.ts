@@ -20,6 +20,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "acdn-us.mitiendanube.com",
       },
+      {
+        protocol: "https",
+        hostname: "lojamorenarosa.vtexassets.com",
+      },
+      {
+        protocol: "https",
+        hostname: "clubemorenarosa.vtexassets.com",
+      },
     ],
   },
 };
