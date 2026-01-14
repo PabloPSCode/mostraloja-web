@@ -37,11 +37,21 @@ const STORE_SOURCES = {
     mediaItems:
       "https://gist.githubusercontent.com/PabloPSCode/127d9132e834db826d291db6477feef3/raw/woman_store_media.json",
   },
+  manstore: {
+    storeData:
+      "https://gist.githubusercontent.com/PabloPSCode/701a55248dcf778eec895bbdda1cf3a7/raw/man_store_store-data.json",
+    products:
+      "https://gist.githubusercontent.com/PabloPSCode/45e0adf27b800a40455921aba8bcd4dd/raw/man_store_products.json",
+    categories:
+      "https://gist.githubusercontent.com/PabloPSCode/4b58e14f679aab241fbbf2038c4567fe/raw/man_store_categories.json",
+    mediaItems:
+      "https://gist.githubusercontent.com/PabloPSCode/16b28b4861d574410aa7d77ad31c5ebd/raw/man_store_media.json",
+  },
 } as const;
 
 type StoreSlug = keyof typeof STORE_SOURCES;
 
-const DEFAULT_STORE_SLUG: StoreSlug = "womanstore";
+const DEFAULT_STORE_SLUG: StoreSlug = "manstore";
 
 const DEFAULT_STORE_DATA: StoreData = {
   store: {

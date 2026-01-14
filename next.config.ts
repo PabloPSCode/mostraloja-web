@@ -28,6 +28,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "clubemorenarosa.vtexassets.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.camisariacolombo.com.br",
+      },
     ],
   },
 };
