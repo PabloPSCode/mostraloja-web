@@ -227,10 +227,10 @@ export default function ProductCard({
           className={clsx(
             "inline-flex items-center justify-center gap-2 rounded-md px-4 py-3",
             "text-sm sm:text-base font-semibold transition",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300/60",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300/60 cursor-pointer",
             showDeal && dealExpired
-              ? "text-backgroundcursor-not-allowed"
-              : "bg-primary-500 text-background"
+              ? "text-background cursor-not-allowed text-white"
+              : "bg-primary-500 text-white"
           )}
           aria-label={`${ctaLabel} - ${title}`}
         >

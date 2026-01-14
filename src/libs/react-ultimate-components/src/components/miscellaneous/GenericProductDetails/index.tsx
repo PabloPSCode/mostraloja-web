@@ -266,7 +266,7 @@ export default function GenericProductDetails({
           <button
             type="button"
             onClick={handleAddToCart}
-            className="w-fit items-center justify-center gap-2 rounded-xl bg-primary-500 px-4 py-3 text-base font-semibold text-white shadow-sm transition focus-visible:outline-none focus-visible:ring-2 "
+            className="w-fit items-center justify-center gap-2 rounded-xl bg-primary-500 px-4 py-3 text-base font-semibold text-white shadow-sm transition focus-visible:outline-none focus-visible:ring-2 cursor-pointer"
           >
             <ShoppingCartIcon className="h-5 w-5" weight="bold" />
             Tenho interesse
