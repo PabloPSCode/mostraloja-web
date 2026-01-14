@@ -1,5 +1,4 @@
 "use client";
-import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -11,7 +10,6 @@ import {
   LandingHeader,
   SearchInput,
 } from "../../libs/react-ultimate-components/src";
-import useTheme from "../../libs/react-ultimate-components/src/hooks/useTheme";
 import { useStore } from "../providers/StoreProvider";
 
 export const metadata: Metadata = {
@@ -21,14 +19,12 @@ export const metadata: Metadata = {
 
 export default function Header() {
   const [search, setSearch] = useState("");
-  const { theme, setTheme } = useTheme();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const router = useRouter();
   const { storeData, categories, products } = useStore();
 
   const pathname = usePathname();
-  const normalizedPathname =
-    pathname.replace(/^\/sites\/[^/]+/, "") || "/";
+  const normalizedPathname = pathname.replace(/^\/sites\/[^/]+/, "") || "/";
 
   const MIN_SEARCH_LENGTH = 3;
 
@@ -102,16 +98,6 @@ export default function Header() {
         )}
       </div>
       <LandingHeader.Right className="flex items-center gap-6">
-        <button
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="text-sm font-medium text-gray-700 hover:text-gray-900"
-        >
-          {theme === "light" ? (
-            <MoonIcon size={20} className="text-foreground" />
-          ) : (
-            <SunIcon size={20} className="text-foreground" />
-          )}
-        </button>
         <LandingHeader.MobileMenuToggle
           open={showMobileMenu}
           onToggle={handleToggleMobileMenu}
