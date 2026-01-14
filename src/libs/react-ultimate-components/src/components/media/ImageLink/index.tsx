@@ -39,27 +39,42 @@ export default function ImageLink({
   imageClassName,
 }: ImageLinkProps) {
   const Wrapper: React.ElementType = onSeePromotion ? "button" : "div";
-  const normalizedWidth =
-    typeof width === "number" ? `${width}px` : String(width);
-  const normalizedHeight =
-    typeof height === "number" ? `${height}px` : String(height);
+  const widthNumber =
+    typeof width === "number" && Number.isFinite(width) && width > 0
+      ? width
+      : undefined;
+  const heightNumber =
+    typeof height === "number" && Number.isFinite(height) && height > 0
+      ? height
+      : undefined;
+  const widthString =
+    typeof width === "string" && width.trim().length > 0 ? width : undefined;
+  const heightString =
+    typeof height === "string" && height.trim().length > 0 ? height : undefined;
 
   const aspectRatio =
-    typeof width === "number" && typeof height === "number" && height !== 0
-      ? `${width}/${height}`
-      : undefined;
+    widthNumber && heightNumber ? `${widthNumber}/${heightNumber}` : undefined;
 
   const wrapperStyle: React.CSSProperties = {
     width: "100%",
-    maxWidth: normalizedWidth,
   };
+
+  if (widthNumber) {
+    wrapperStyle.maxWidth = `${widthNumber}px`;
+  } else if (widthString) {
+    wrapperStyle.maxWidth = widthString;
+  }
 
   if (aspectRatio) {
     wrapperStyle.aspectRatio = aspectRatio;
+  } else if (heightNumber) {
+    wrapperStyle.height = `${heightNumber}px`;
+  } else if (heightString) {
+    wrapperStyle.height = heightString;
   } else {
-    wrapperStyle.height = normalizedHeight;
+    wrapperStyle.aspectRatio = "16/9";
   }
-  const imageSizes = typeof width === "number" ? `${width}px` : "100vw";
+  const imageSizes = widthNumber ? `${widthNumber}px` : "100vw";
 
   return (
     <Wrapper
