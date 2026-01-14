@@ -12,10 +12,6 @@ export default function Footer() {
       href: "#",
       label: "Termos de Uso",
     },
-    {
-      href: "#",
-      label: "Política de Cookies",
-    },
   ];
 
   const supportItems = [
