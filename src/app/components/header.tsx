@@ -77,7 +77,7 @@ export default function Header() {
             alt={storeData.store.name || "MostraLoja"}
             width={612}
             height={408}
-            className="h-12 w-auto sm:h-14 md:h-16"
+            className="h-12 w-auto sm:h-14 md:h-16 max-w-[120px] max-h-[40px] object-contain"
             quality={100}
             priority
           />
