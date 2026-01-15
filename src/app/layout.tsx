@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   Inter,
+  Josefin_Sans,
   Montserrat,
   Poppins,
   Raleway,
@@ -68,6 +69,13 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
+const josefinSans = Josefin_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-josefin-sans",
+});
+
+
 const fontVariables = [
   poppins.variable,
   raleway.variable,
@@ -76,6 +84,7 @@ const fontVariables = [
   inter.variable,
   workSans.variable,
   montserrat.variable,
+  josefinSans.variable
 ].join(" ");
 
 export default async function RootLayout({
